@@ -41,8 +41,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					self.form = $('#addApplication');
 				}).error(function(){
 					self.threeAView.hideAjaxBackground();
-					$('#error').find('i').append('Impossible de récupérer les campagnes, veuillez réessayer plus tard.');
-					$('#error').fadeIn();
+					self.showErrorMessage('Impossible de récupérer les campagnes, veuillez réessayer plus tard.');
 				})
 		},
 
@@ -54,13 +53,27 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 		},
 
 		getScrapping : function(e){
-			e.preventDefault();
 			$('#error').fadeOut();
+			e.preventDefault();
 			var self = this;
 			
 			var 	dataForm 	= this.form.serialize(),
 				self 		=this,
 				badUrl 	= false;
+
+
+			var stores = $('input[name^="store["]:checked');
+
+			if(stores.length == 0){
+				this.showErrorMessage('Veuillez choisir un device');
+				return;
+			}
+
+			if(stores.length > 1){
+				this.showErrorMessage('Veuillez choisir un seul device à la fois');
+				return;
+			}
+			
 
 			$('.application-url').each(function(i){
 
@@ -141,10 +154,15 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					
 				}).error(function(){
 					self.threeAView.hideAjaxBackground();
-					$('#error').find('i').text('Impossible de récupérer les infos de l\'application');
-					$('#error').fadeIn();
+					self.showErrorMessage('Impossible de récupérer les infos de l\'application');
 				})
 			}
+		},
+
+
+		showErrorMessage : function(msg){
+			$('#error').find('i').text(msg);
+			$('#error').fadeIn();
 		},
 
 		generateFooter : function(evt){
@@ -238,9 +256,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					}).error(function(err){
 						console.log(err);
 						self.threeAView.hideAjaxBackground();
-						$('#error').find('i').text('Impossible de générer les footers');
-						$('#error').fadeIn();
-
+						this.showErrorMessage('Impossible de générer les footers');
 				});
 			}
 			

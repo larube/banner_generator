@@ -1,9 +1,9 @@
 {	
 		"mask" 			: "public/images/utils/mask.png",
 		
-		"name" 		: "monochrome_iphone",
+		"name" 		: "monochrome_ipad",
 
-		"backofficeName"	:"Monochrome iPhone  {{size}}",
+		"backofficeName"	:"Monochrome iPad  {{size}}",
 
 		"htmlTemplate" 	:"public/templates/banners_templates/monochrome_ipad.html",
 
@@ -63,8 +63,8 @@
 						"height" 	: 14,
 						"type" 		: "rectangle",
 						"color" 		: "#{color}",
-						"x"		: 0,
-						"y"		: 31,
+						"x"		:0,
+						"y"		:31,
 						"mask"		: "public/images/utils/mask_liseret_monochrome_ipad.png"
 					}		
 			
@@ -72,9 +72,9 @@
 			},
 
 			"htmlVars" : {
-				"up-arrow-style" : "width: 5.9%;\n\rheight: 4.5%;\n\r-webkit-transform: rotate(45deg);\n\rright: 5%;\n\rbottom: 53.3%;\n\r-webkit-animation-name: upArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
+				"up-arrow-style" : "width: 3%;\n\rheight: 7%;\n\r-webkit-transform: rotate(45deg);\n\rright: 26%;\n\rbottom: 38.4%;\n\r-webkit-animation-name: upArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
 
-				"down-arrow-style" : "width: 5.9%;\n\rheight: 4.5%;\n\r-webkit-transform: rotate(-45deg);\n\rright: 5%;\n\rbottom: 38.4%;\n\r-webkit-animation-name: downArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
+				"down-arrow-style" : "width: 3%;\n\rheight: 7%;\n\r-webkit-transform: rotate(-45deg);\n\rright: 26%;\n\rbottom: 22.7%;\n\r-webkit-animation-name: downArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
 				"arrow-color" : "#{color}"
 			}
 

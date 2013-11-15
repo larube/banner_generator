@@ -9,9 +9,9 @@
 
 		"backgroundPreviewImage" 	: "public/images/{language}/back_iphone.png",
 
-		"bannerWidth"		:640,
+		"bannerWidth"				:640,
 
-		"bottomMarginHeight"		:90,
+		"bottomMarginHeightPreview"	:90,
 
 		"100" : {
 

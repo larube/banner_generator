@@ -28,12 +28,14 @@
 
 			<div class="field-box">
 				<label for="nbComments">Nombre de commentaires</label>
-					<input class="input-mini" id="nbComments" type="text"  value="{{nbComments}}" name="texts[comments][content]">
+					<input class="input-mini validation" id="nbComments" type="text"  value="{{nbComments}}" name="texts[comments][content]" pattern="[0-9]+">
+					<span class="alert-msg"><i class="icon-remove-sign"></i> Le nombre de commentaires renseigné n'est pas correct</span>
 			</div>
 
 			<div class="field-box">
 				<label  for="nbStars">Nombre d étoiles</label>
-					<input class="input-mini" id="nbStars" type="text"  value="{{nbStars}}" name="extras[images][stars][src]">
+					<input class="input-mini validation" id="nbStars" type="text"  value="{{nbStars}}" name="extras[images][stars][src]" pattern="[0-4](\.5)?|5">
+					<span class="alert-msg"><i class="icon-remove-sign"></i> Le nombre d'étoiles renseigné n'est pas correct</span>
 			</div>
 
 
@@ -126,7 +128,7 @@
 						<span class="alert-msg"><i class="icon-remove-sign"></i> La couleur renseignée n'est pas correcte</span>
 						<input type="hidden" id="liseretColor" name="monochrome[extras][shapes][liseret][color]">
 						<input type="hidden" id="arrowColor" name="monochrome[htmlVars][arrow-color]">
-						<input type="hidden" id="punchline-content"  value="{{editor}}" class="span8" name="monochrome[texts][punchline][content]">
+						<input type="hidden" id="punchline-content"  value="{{appName}}" class="span8" name="monochrome[texts][punchline][content]">
 				</div>
 
 			<div class="field-box">
