@@ -1,5 +1,5 @@
 Numbate Generators
 ===========
 
-Gennerateurs Numbate
-Test
+Générateurs Numbate
+
