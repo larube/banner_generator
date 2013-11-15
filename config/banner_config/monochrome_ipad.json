@@ -1,0 +1,82 @@
+{	
+		"mask" 			: "public/images/utils/mask.png",
+		
+		"name" 		: "monochrome_iphone",
+
+		"backofficeName"	:"Monochrome iPhone  {{size}}",
+
+		"htmlTemplate" 	:"public/templates/banners_templates/monochrome_ipad.html",
+
+		"backgroundPreviewImage" 	: "public/images/{language}/back_ipad.png",
+
+		"bannerWidth"				:1370,
+
+		"bottomMarginHeightPreview"	:40,
+
+		"leftMarginHeightPreview"		:315,
+
+	
+		"200" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_monochrome_ipad_170px_fond.png"
+			},
+
+			"logo":{
+					"width":150,
+					"height":150,
+					"x":52,
+					"y":2
+			},
+
+			"texts":{
+
+				"appName":{
+					"font" : "Arial-bold",
+					"size" :45,
+					"x":240,
+					"y":70,
+					"color" : "#000",
+					"content" : "{content}"
+				},
+
+				"punchline" : {
+						"font" : "Arial-bold",
+						"size" :32,
+						"x" :240,
+						"y":140,
+						"color" : "#{color}",
+						"content" :{
+							"fr" : "Téléchargez gratuitement l'application",
+							"uk": "Download {content} for free"
+							}
+					}
+
+			},
+
+			"extras" : {
+
+				"shapes" :{
+
+					"liseret" :{
+						"width" 	:1370,
+						"height" 	: 14,
+						"type" 		: "rectangle",
+						"color" 		: "#{color}",
+						"x"		: 0,
+						"y"		: 31,
+						"mask"		: "public/images/utils/mask_liseret_monochrome_ipad.png"
+					}		
+			
+				}
+			},
+
+			"htmlVars" : {
+				"up-arrow-style" : "width: 5.9%;\n\rheight: 4.5%;\n\r-webkit-transform: rotate(45deg);\n\rright: 5%;\n\rbottom: 53.3%;\n\r-webkit-animation-name: upArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
+
+				"down-arrow-style" : "width: 5.9%;\n\rheight: 4.5%;\n\r-webkit-transform: rotate(-45deg);\n\rright: 5%;\n\rbottom: 38.4%;\n\r-webkit-animation-name: downArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
+				"arrow-color" : "#{color}"
+			}
+
+		}
+}

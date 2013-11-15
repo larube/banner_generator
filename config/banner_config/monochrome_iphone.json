@@ -1,0 +1,202 @@
+{	
+		"mask" 			: "public/images/utils/mask.png",
+		
+		"name" 		: "monochrome_iphone",
+
+		"backofficeName"	:"Monochrome iPhone  {{size}}",
+
+		"htmlTemplate" 	:"public/templates/banners_templates/monochrome_iphone.html",
+
+		"backgroundPreviewImage" 	: "public/images/{language}/back_iphone.png",
+
+		"bannerWidth"		:640,
+
+		"bottomMarginHeight"		:90,
+
+		"100" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_monochrome_100px_fond.png"
+			},
+
+			"logo":{
+					"width":80,
+					"height":80,
+					"x":20,
+					"y":2
+			},
+
+			"texts":{
+
+				"appName":{
+					"font" : "Arial-Bold",
+					"size" :19,
+					"x":110,
+					"y":38,
+					"color" : "#000",
+					"content" : "{content}"
+				},
+
+				"punchline" : {
+						"font" : "Arial",
+						"size" :14,
+						"x" :110,
+						"y":70,
+						"color" : "#{color}",
+						"content" :{
+							"fr" : "Téléchargez gratuitement l'application",
+							"uk": "Download {content} for free"
+							}
+					}
+
+			},
+
+			"extras" : {
+
+				"shapes" :{
+
+					"liseret" :{
+						"width" 	: 640,
+						"height" 	: 5,
+						"type" 		: "rectangle",
+						"color" 		: "#{color}",
+						"x"		:0,
+						"y"		:20
+					}		
+			
+				}
+			},
+
+			"htmlVars" : {
+				"up-arrow-style" : "width: 4.9%;\n\rheight: 7.5%;\n\r-webkit-transform: rotate(45deg);\n\rright: 5%;\n\rbottom: 35.7%;\n\r-webkit-animation-name:upArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay:1s;\n\r-webkit-animation-timing-function:ease-out;\n\r-webkit-animation-iteration-count:infinite;\n\r",
+				"down-arrow-style" : "width: 4.9%;\n\rheight: 7.5%;\n\r-webkit-transform: rotate(-45deg);\n\rright: 5%;\n\rbottom: 18%;\n\r-webkit-animation-name:downArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay:1s;\n\r-webkit-animation-timing-function:ease-out;\n\r-webkit-animation-iteration-count:infinite;\n\r",
+				"arrow-color" : "#{color}"
+			}
+		},
+
+		"120" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_monochrome_120px_fond.png"
+			},
+
+			"logo":{
+					"width":100,
+					"height":100,
+					"x":15,
+					"y":2
+			},
+
+			"texts":{
+
+				"appName":{
+					"font" : "Arial-bold",
+					"size" :19,
+					"x":140,
+					"y":53,
+					"color" : "#000",
+					"content" : "{content}"
+				},
+
+				"punchline" : {
+						"font" : "Arial",
+						"size" :15,
+						"x" :140,
+						"y":85,
+						"color" : "#{color}",
+						"content" :{
+							"fr" : "Téléchargez gratuitement l'application",
+							"uk": "Download {content} for free"
+							}
+					}
+
+			},
+
+			"extras" : {
+
+				"shapes" :{
+
+					"liseret" :{
+						"width" 	: 640,
+						"height" 	: 5,
+						"type" 		: "rectangle",
+						"color" 		: "#{color}",
+						"x"		:0,
+						"y"		:23
+					}		
+			
+				}
+			},
+
+			"htmlVars" : {
+				"up-arrow-style" : "width: 5.9%;\n\rheight: 7.5%;\n\r-webkit-transform: rotate(45deg);\n\rright: 5%;\n\rbottom: 42.7%;\n\r-webkit-animation-name: upArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
+
+				"down-arrow-style" : "width: 5.9%;\n\rheight: 7.5%;\n\r-webkit-transform: rotate(-45deg);\n\rright: 5%;\n\rbottom: 26.6%;\n\r-webkit-animation-name: downArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
+				"arrow-color" : "#{color}"
+			}
+
+		},
+
+		"150" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_monochrome_150px_fond.png"
+			},
+
+			"logo":{
+					"width":120,
+					"height":120,
+					"x":15,
+					"y":2
+			},
+
+			"texts":{
+
+				"appName":{
+					"font" : "Arial-bold",
+					"size" :21,
+					"x":155,
+					"y":70,
+					"color" : "#000",
+					"content" : "{content}"
+				},
+
+				"punchline" : {
+						"font" : "Arial",
+						"size" :17,
+						"x" :155,
+						"y":105,
+						"color" : "#{color}",
+						"content" :{
+							"fr" : "Téléchargez gratuitement l'application",
+							"uk": "Download {content} for free"
+							}
+					}
+
+			},
+
+			"extras" : {
+
+				"shapes" :{
+
+					"liseret" :{
+						"width" 	: 640,
+						"height" 	: 5,
+						"type" 		: "rectangle",
+						"color" 		: "#{color}",
+						"x"		:0,
+						"y"		:33
+					}		
+			
+				}
+			},
+
+			"htmlVars" : {
+				"up-arrow-style" : "width: 5.9%;\n\rheight: 4.5%;\n\r-webkit-transform: rotate(45deg);\n\rright: 5%;\n\rbottom: 53.3%;\n\r-webkit-animation-name: upArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
+
+				"down-arrow-style" : "width: 5.9%;\n\rheight: 4.5%;\n\r-webkit-transform: rotate(-45deg);\n\rright: 5%;\n\rbottom: 38.4%;\n\r-webkit-animation-name: downArrow;\n\r-webkit-animation-duration: 4.5s;\n\r-webkit-animation-delay: 1s;\n\r-webkit-animation-timing-function: ease-out;\n\r-webkit-animation-iteration-count: infinite;\n\r",
+				"arrow-color" : "#{color}"
+			}
+
+		}
+}

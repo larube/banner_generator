@@ -1,0 +1,161 @@
+<div  class="row-fluid form-wrapper scrapping-result" >
+
+	<div class="back-menu-banner-generator"><h4><a class="btn-flat danger backButton">REVENIR</a></h4></div>
+
+	<form class="form-horizontal footer-generator" id="{{device}}-generator" method="post" action="#" >
+		<div class="row-fluid custom-header">
+			<h4>{{{deviceName}}}</h4>
+		</div>
+			<div class="field-box">
+				<label for="logo">Logo</label>
+					<img src="{{{srcLogo}}" width="100" height="100">
+					<input type="hidden" value="{{{srcLogo}}" name="logo">
+					<input type="hidden" value="{{device}}" name="device">
+					<input type="hidden" value="{{campaignID}}" name="campaignID">
+					<input type="hidden" value="{{trackLink}}" name="trackLink">
+					<input type="hidden" value="{{campaignName}}" name="campaignName">
+			</div>
+
+			<div class="field-box">
+				<label  for="name">Nom de l'application</label>
+					<input type="text" id="name" class="span4" value="{{appName}}" name="texts[appName][content]">
+			</div>
+
+			<div class="field-box">
+				<label for="by">Par : </label>
+					<input type="text" id="by"  value="{{editor}}" class="span4" name="texts[editor][content]">
+			</div>
+
+			<div class="field-box">
+				<label for="nbComments">Nombre de commentaires</label>
+					<input class="input-mini" id="nbComments" type="text"  value="{{nbComments}}" name="texts[comments][content]">
+			</div>
+
+			<div class="field-box">
+				<label  for="nbStars">Nombre d étoiles</label>
+					<input class="input-mini" id="nbStars" type="text"  value="{{nbStars}}" name="extras[images][stars][src]">
+			</div>
+
+
+			<div class="field-box">
+				<label  for="lang">Pays de la campagne</label>
+				<label class="checkbox">
+					<span><input type="radio" value="fr" name="lang" checked></span>FR
+				</label>
+
+				<label class="checkbox">
+					<span><input type="radio" value="uk" name="lang"></span>UK 
+				</label>
+			</div>
+
+			<br class="clear">
+			<div class="row-fluid customsection">
+
+			{{#if formatStore}}
+
+			<div class="field-box">
+				<label for="monochrome">Store ?</label>
+				<label class="checkbox">
+					<span><input type="checkbox" value="store" name="format" class="showForm"></span>Oui 
+				</label>
+			</div>
+
+			<div class="hide">
+
+			
+				{{#if multiColor}}
+					<div class="field-box">
+						<label  for="colors">Couleurs</label>
+
+							<label class="checkbox">
+								<input type="checkbox"value="red" name="store[color]">
+									Rouge
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" value="blue" name="store[color]">
+									Bleu
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" value="green" name="store[color]">
+									Vert
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" value="grey" name="store[color]">
+									Gris
+							</label>
+					</div>
+				{{/if}}
+
+				
+
+				<div class="field-box">
+
+					<label  for="colors">Tailles</label>
+					 {{#each sizesStore}}
+						
+						<label class="checkbox">
+							<input type="checkbox"  value="{{size}}" name="store[size]">
+								{{size}}px
+						</label>
+					{{/each}}
+
+				</div>
+
+			</div>
+
+			</div>
+
+			{{/if}}
+
+			{{#if formatMonochrome}}
+	
+			<div class="row-fluid customsection"> 
+
+			<div class="field-box">
+				<label for="monochrome">Monochrome ?</label>
+				<label class="checkbox">
+					<span><input type="checkbox" value="monochrome" name="format" class="showForm"></span>Oui 
+				</label>
+			</div>
+
+			<div class="hide">
+
+				<div class="field-box">
+					<label  for="nbStars">Code Couleur Liseret Monochrome</label>
+						<input class="input-large color validation" id="liseretMonochrome"  type="text" pattern="[a-fA-F0-9]{6}" name="monochrome[texts][punchline][color]">
+						<span class="alert-msg"><i class="icon-remove-sign"></i> La couleur renseignée n'est pas correcte</span>
+						<input type="hidden" id="liseretColor" name="monochrome[extras][shapes][liseret][color]">
+						<input type="hidden" id="arrowColor" name="monochrome[htmlVars][arrow-color]">
+						<input type="hidden" id="punchline-content"  value="{{editor}}" class="span8" name="monochrome[texts][punchline][content]">
+				</div>
+
+			<div class="field-box">
+				<label for="colors">Tailles Monochrome</label>	
+					{{#each sizesMonochrome}}
+							<label class="checkbox">
+								<input type="checkbox" value="{{size}}" name="monochrome[size]">
+								{{size}}px
+							</label>
+					{{/each}}
+			</div>
+
+			</div>
+		
+			</div>
+
+			{{/if}}
+
+			<div class="field-box">
+
+				<div class="row-fluid">
+					<div class="span6">
+						<div class="alert alert-error" id="error-formats">
+							<i class="icon-remove-sign"></i>
+						</div>
+					</div> 
+				</div>
+					<button type="submit" class="btn submit-footer btn-glow primary generate-footer">Générer les Footers</button>
+					<button type="submit" class="btn submit-footer btn-glow primary preview-mode preview-footer">Faire Une Preview</button>
+			</div>
+</form>
+</div>

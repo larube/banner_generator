@@ -1,0 +1,87 @@
+<!doctype html>
+
+<head>
+  <title>{{title}}</title>
+	<link href="/styles/bootstrap/bootstrap.css" rel="stylesheet">
+	<link href="/styles/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/styles/bootstrap/bootstrap-overrides.css" rel="stylesheet">
+	<link href="/styles/3ainc.css" rel="stylesheet">
+	<link href="/styles/elements.css" rel="stylesheet">
+	<link href='/styles/gallery.css' rel="stylesheet">
+	<link href='/styles/layout.css' rel="stylesheet">
+	<link href='/styles/tables.css' rel="stylesheet">
+	<link href='/styles/chart-showcase.css' rel="stylesheet">
+	<link href='/styles/form-wizard.css' rel="stylesheet">
+	<link href='/styles/ui-elements.css' rel="stylesheet">
+	<link href='/styles/compiled/web-app-icons.css' rel="stylesheet">
+	<link href='/styles/compiled/form-showcase.css' rel="stylesheet">
+	<link href='/styles/lib/bootstrap-wysihtml5.css' rel="stylesheet">
+	<link href='/styles/lib/uniform.default.css' rel="stylesheet">
+	<link href='/styles/lib/select2.css' rel="stylesheet">
+	<link href='/styles/lib/bootstrap.datepicker.css' rel="stylesheet">
+	<link href='/styles/lib/font-awesome.css' rel="stylesheet">
+  {{{block "stylesheets"}}}
+</head>
+
+<body>
+
+	<div id="backgroundAjaxRequest">
+			<div id="loader"><img src="/img/ajax-loader.gif" alt="" ></div>
+	</div>
+
+
+	<div class="navbar navbar-inverse"> 
+		<div class="navbar-inner"> 
+			<div class="container"> 
+				<a class="brand" href="#">Numbate - Surikate - Generators</a>
+				<div class="nav-collapse">
+				</div>
+			</div> 
+		</div> 
+	</div>
+
+	<div id="sidebar-nav">
+		<ul id="dashboard-menu">
+			<li class="active">
+				<div class="pointer">
+					<div class="arrow"></div>
+					<div class="arrow_border"></div>
+				</div>
+				<a href="#banner">
+					<i class="icon-th-list"></i>
+					<span>Footers</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+
+	<div class="content">
+
+		<div class="container-fluid">
+			<div id="pad-wrapper">
+				<div id="user-alerts">
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="alert alert-error" id="error">
+								<i class="icon-remove-sign"></i>
+							</div>
+						</div> 
+					</div>
+				</div>
+
+				<div id="content">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<script data-main="js/boot" src ="/js/libs/require.js"></script>
+{{{block "scripts"}}}
+</body>
+
+</html>

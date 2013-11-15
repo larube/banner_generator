@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<!-- campaign - POST CLICK -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<style type="text/css">
+		/* ======== DEFAULT CSS ======== */
+		body{margin:0;background:transparent;overflow:hidden}img{max-width:100%;display:block;vertical-align:middle;image-rendering:pixelated}a{-webkit-tap-highlight-color:rgba(200,0,0,0.0)}#nb-close{display:block;width:8%;height:8%;position:absolute;top:0;left:0;border:0;background:rgba(0,0,0,0)}
+		/* ======== CUSTOM CSS ======== */
+
+#container{
+			position: relative;
+			overflow: hidden;
+		}
+		#background{
+			width:100%;
+			bottom:0;
+		}
+
+		.absolute{
+			position: absolute;
+			/* max-width:100%; */
+		}
+
+		#up-arrow{
+			background-color: {{  arrow-color}};
+			{{up-arrow-style  }}
+		}
+
+		#down-arrow{
+			background-color: {{arrow-color}};
+			{{down-arrow-style}}
+		}
+
+		@-webkit-keyframes upArrow{
+			0%{
+				right:5%;
+			}
+			5%{
+				right:8%;
+			}
+			10%{
+				right:5%;
+			}
+			15%{
+				right:8%;
+			}
+			20%{
+				right:5%;
+			}
+			100%{
+				right:5%;
+			}
+		}
+
+		@-webkit-keyframes downArrow{
+			0%{
+				right:5%;
+			}
+			5%{
+				right:8%;
+			}
+			10%{
+				right:5%;
+			}
+			15%{
+				right:8%;
+			}
+			20%{
+				right:5%;
+			}
+			100%{
+				right:5%;
+			}
+		}
+
+
+	
+		</style>
+</head>
+<body>
+
+	
+	
+	<!-- BANNER CONTENT -->
+	<div id="container">
+			<img src="{{pathToBanner }}" id="background">
+			<div id="up-arrow" class="absolute"></div>
+			<div id="down-arrow" class="absolute"></div>
+			
+	</div>
+
+	<!-- / BANNER CONTENT -->
+
+	<script type="text/javascript">
+		{{communicateScript}}
+	</script>
+
+</body></html>

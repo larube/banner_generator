@@ -1,0 +1,151 @@
+<div class="row-fluid chart" id="title">
+	<h4 class="title">Nouvelle Bannière</h4>
+</div>
+		
+<div class="row-fluid form-wrapper" id="allContent">
+	<div class="span4">
+		<form class="form-horizontal" id="addApplication" action="#" method="post">	
+			<div class="control-group field-box">
+				<label class="checkbox">
+				 	<input type="checkbox" class="showForm" name="store[iphone]" id="iPhone" >iPhone
+				 </label>
+			</div>
+
+
+			<div class="hide" id="ios">
+					
+				<input type="hidden" name="multicolor[iphone]" value="1">
+				<input type="hidden" name="formats[iphone]" value="store:monochrome">
+				<input type="hidden" name="sizes[store][iphone]" value="100:120:150">
+				<input type="hidden" name="sizes[monochrome][iphone]" value="100:120:150">
+
+				 <div class="control-group field-box">
+					<label class="control-label" for="campaign[iphone]">Campagne</label>
+					<div class="controls">
+						<select class="span12 select2" name="campaign[iphone]">
+								{{{campaigns}}
+						</select>
+					</div>
+				</div>
+
+				<div class="control-group field-box">
+					<label class="control-label" for="link[ios]">Lien de l application</label>
+					<div class="controls">
+						<input type="url" id="link[iphone]"  name="link[iphone]" placeholder="Entrer l url de  application sur l appstore" class="input-xxlarge application-url" pattern="https:\/\/itunes.apple.com\/(.)*" > 
+						<span class="alert-msg"><i class="icon-remove-sign"></i> L URL entrée n est pas correcte</span>
+					</div>
+
+				</div>
+
+				<div class="control-group field-box"> 
+					<label class="control-label" for="track[iphone]">TrackingLink</label>
+					<div class="controls">
+						<input type="text" id="track[iphone]" name="track[iphone]" value="" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+				</div>
+
+				<div class="last control-group field-box">
+					<label class="control-label" for="campaignNameIos">Nom de la campagne</label>
+					<div class="controls">
+						<input type="text" id="campaignName[iphone]" name="campaignName[iphone]" value="download-iphone" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group field-box">
+				<label class="checkbox">
+				 	<input type="checkbox" class="showForm" name="store[ipad]" id="iPhone" >iPad
+				 </label>
+			</div>
+
+
+			<div class="hide" id="ios_ipad">
+				<input type="hidden" name="formats[ipad]" value="store:monochrome">
+				<input type="hidden" name="sizes[store][ipad]" value="170">
+				<input type="hidden" name="sizes[monochrome][ipad]" value="200">
+
+				 <div class="control-group field-box">
+					<label class="control-label" for="campaign[ipad]">Campagne</label>
+					<div class="controls">
+						<select class="span12 select2" name="campaign[ipad]">
+								{{{campaigns}}
+						</select>
+					</div>
+				</div>
+
+				<div class="control-group field-box">
+					<label class="control-label" for="link[ios]">Lien de l application</label>
+					<div class="controls">
+						<input type="url" id="link[ipad]"  name="link[ipad]" placeholder="Entrer l url de  application sur l appstore" class="input-xxlarge application-url" pattern="https:\/\/itunes.apple.com\/(.)*" > 
+						<span class="alert-msg"><i class="icon-remove-sign"></i> L URL entrée n est pas correcte</span>
+					</div>
+
+				</div>
+
+				<div class="control-group field-box"> 
+					<label class="control-label" for="track[iphone]">TrackingLink</label>
+					<div class="controls">
+						<input type="text" id="track[ipad]" name="track[ipad]" value="" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+				</div>
+
+				<div class="last control-group field-box">
+					<label class="control-label" for="campaignNameIos">Nom de la campagne</label>
+					<div class="controls">
+						<input type="text" id="campaignName[ipad]" name="campaignName[ipad]" value="download-ipad" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group field-box">
+				<label class="checkbox">
+				 	<input type="checkbox" class="showForm" name="store[android_phone]" id="android" >Android Phone
+				 </label>
+			</div>
+			
+			<div class="hide" id="android_phone">
+				<input type="hidden" name="formats[android_phone]" value="store:monochrome">
+				<input type="hidden" name="sizes[store][android_phone]" value="100:120:150">
+				<input type="hidden" name="sizes[monochrome][android_phone]" value="100:120:150">
+
+				 <div class="control-group field-box">
+					<label class="control-label" for="campaign[android_phone]">Campagne</label>
+					<div class="controls">
+						<select class="span8 select2" name="campaign[android_phone]">
+								{{{campaigns}}}
+						</select>
+					</div>
+				</div>
+
+				<div class="control-group field-box">
+					<label class="control-label" for="linkAndroid">Lien de l application</label>
+					<div class="controls">
+						<input type="url" id="link[android_phone]" name="link[android_phone]" placeholder="Entrer l url de  application sur le play store" class="input-xxlarge application-url" pattern="https:\/\/play.google.com\/store\/(.)">
+						<span class="alert-msg"><i class="icon-remove-sign"></i> L URL entrée n est pas correcte</span>
+					</div>
+				</div>
+
+				<div class="control-group field-box">
+					<label class="control-label" for="trackAndroid">TrackingLink</label>
+					<div class="controls">
+						<input type="text" id="track[android_phone]" name="track[android_phone]" value="" class="input-xxlarge">
+					</div>
+				</div>
+
+				<div class="last control-group field-box">
+					<label class="control-label" for="campaignNameAndroid">Nom de la campagne</label>
+					<div class="controls">
+						<input type="text" id="campaignName[android_phone]" name="campaignName[android_phone]" value="download-android-phone" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+				</div>
+			</div>
+		
+		
+		<input type="submit" class="btn-glow primary" value="Récupérer les informations" id="scrapping-info">
+
+		</form>			
+	</div>
+	
+	<div id="editContent"></div>
+	
+</div>

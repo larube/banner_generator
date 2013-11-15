@@ -1,0 +1,219 @@
+{	
+		"mask" 		:"public/images/utils/mask.png",
+
+		"name" 	:"store_iphone_vert",
+
+		"backofficeName"	:"Iad iPhone {{size}} Vert",
+
+		"htmlTemplate" 	:"public/templates/banners_templates/store_iphone.html",
+
+		"backgroundPreviewImage" 	: "public/images/{language}/back_iphone.png",
+
+		"bannerWidth"			:640,
+
+		"bottomMarginHeight"		:90,
+		
+		"100" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_iad_100px_fond.png"
+			},
+
+			"logo":{
+				"width":80,
+				"height":80,
+				"x":20,
+				"y":2
+			},
+
+			"texts" : {
+				"appName":{
+					"font" : "Arial-Bold",
+					"size" :18,
+					"x":160,
+					"y":28,
+					"color" : "#000",
+					"content" : "{content}"
+				},
+
+				"editor":{
+					"font" : "Arial",
+					"size" :14,
+					"x":160,
+					"y":53,
+					"color" : "#000",
+					"content" : {
+						"fr" : "Par {content}",
+						"uk" : "By {content}"
+					}
+				},
+
+				"comments" :{
+					"font" : "Arial",
+					"size" :14,
+					"x":255,
+					"y":73,
+					"color" : "#000",
+					"content" : "({content})"
+				}
+
+			},
+
+			"images" :{
+
+				"cta"  :{
+					"x" 	: 430,
+					"y" 	: 40,
+					"src" : 	"public/images/{language}/cta_gratuit_vert.png" 
+				}
+			},
+
+			"extras"  :{
+				"images" : {
+
+					"stars" :{
+						"x"		:160,
+						"y" 		: 75,
+				 		"folder"		:"public/images/stars/",
+				 		"src"		: "{src}.png"
+					}
+				}
+			}
+		},
+
+		"120" : {
+
+				"backgroundImage" :{
+					"src" : "public/images/{language}/footer_iad_120px_fond.png"
+				},
+
+				"logo":{
+					"width":100,
+					"height":100,
+					"x":20,
+					"y":2
+				},
+
+				"texts" : {
+					"appName":{
+						"font" : "Arial-Bold",
+						"size" :18,
+						"x":170,
+						"y":28,
+						"color" : "#000",
+						"content" : "{content}"
+					},
+
+					"editor":{
+						"font" : "Arial",
+						"size" :14,
+						"x":170,
+						"y":53,
+						"color" : "#000",
+						"content" : {
+							"fr" : "Par {content}",
+							"uk" : "By {content}"
+						}
+					},
+
+					"comments" :{
+						"font" : "Arial",
+						"size" :14,
+						"x":265,
+						"y":72,
+						"color" : "#000",
+						"content" : "({content})"
+					}
+
+				},
+
+				"images" :{
+
+					"cta"  :{
+						"x" 	: 430,
+						"y" 	: 45,
+						"src" : 	"public/images/{language}/cta_gratuit_vert.png" 
+					}
+				},
+
+				"extras"  :{
+					"images" : {
+
+						"stars" :{
+							"x"		:170,
+							"y" 		: 74,
+					 		"folder"		:"public/images/stars/",
+					 		"src"		: "{src}.png"
+						}
+					}
+				}
+		},
+
+		"150" : {
+
+				"backgroundImage" :{
+					"src" : "public/images/{language}/footer_iad_150px_fond.png"
+				},
+
+				"logo":{
+					"width":120,
+					"height":120,
+					"x":20,
+					"y":2
+				},
+
+				"texts" : {
+					"appName":{
+						"font" : "Arial-Bold",
+						"size" :19,
+						"x":190,
+						"y":58,
+						"color" : "#000",
+						"content" : "{content}"
+					},
+
+					"editor":{
+						"font" : "Arial",
+						"size" :15,
+						"x":190,
+						"y":84,
+						"color" : "#000",
+						"content" : {
+							"fr" : "Par {content}",
+							"uk" : "By {content}"
+						}
+					},
+
+					"comments" :{
+						"font" : "Arial",
+						"size" :15,
+						"x":285,
+						"y":103,
+						"color" : "#000",
+						"content" : "({content})"
+					}
+
+				},
+
+				"images" :{
+
+					"cta"  :{
+						"x" 	: 440,
+						"y" 	: 70,
+						"src" : 	"public/images/{language}/cta_gratuit_vert.png" 
+					}
+				},
+
+				"extras"  :{
+					"images" : {
+
+						"stars" :{
+							"x"		:190,
+							"y" 		: 105,
+					 		"folder"		:"public/images/stars/",
+					 		"src"		: "{src}.png"
+						}
+					}
+				}
+		}
+}

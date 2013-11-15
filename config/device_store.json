@@ -1,0 +1,10 @@
+{
+	
+	"iphone" 		: "ios",
+	"ipad" 			: "ios",
+
+	"android_phone" 	: "android",
+	"android_tab"		: "android"
+	
+	
+}

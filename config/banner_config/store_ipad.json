@@ -1,0 +1,85 @@
+{	
+		"mask" 		:"public/images/utils/mask.png",
+
+		"name" 	:"store_ipad",
+
+		"backofficeName"	:"Iad iPad {{size}}",
+
+		"htmlTemplate" 	:"public/templates/banners_templates/store_ipad.html",
+
+		"backgroundPreviewImage" 	: "public/images/{language}/back_ipad.png",
+
+		"bannerWidth"				:1370,
+
+		"bottomMarginHeightPreview"	:10,
+
+		"leftMarginHeightPreview"		:315,
+		
+		"170" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_ipad_store_170px_fond.png"
+			},
+
+			"logo":{
+				"width":135,
+				"height":135,
+				"x": 62,
+				"y":0
+			},
+
+			"texts" : {
+				"appName":{
+					"font" : "Arial-Bold",
+					"size" :22,
+					"x":300,
+					"y":35,
+					"color" : "#3d3d3d",
+					"content" : "{content}"
+				},
+
+				"editor":{
+					"font" : "Arial",
+					"size" :16,
+					"x":300,
+					"y":77,
+					"color" : "#3d3d3d ",
+					"content" : {
+						"fr" : "Par {content}",
+						"uk" : "By {content}"
+					}
+				},
+
+				"comments" :{
+					"font" : "Arial",
+					"size" :15,
+					"x":450       ,
+					"y":111,
+					"color" : "#6b6b6b",
+					"content" : "({content})"
+				}
+
+			},
+
+			"images" :{
+
+				"cta"  :{
+					"x" 	: 860,
+					"y" 	: 44,
+					"src" : 	"public/images/{language}/cta_gratuit_vert_ipad.png" 
+				}
+			},
+
+			"extras"  :{
+				"images" : {
+
+					"stars" :{
+						"x"		: 300,
+						"y" 		: 108,
+				 		"folder"		:"public/images/stars_ipad/",
+				 		"src"		: "{src}.png"
+					}
+				}
+			}
+		}
+}

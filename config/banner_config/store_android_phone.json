@@ -1,0 +1,129 @@
+{	
+		"mask" 		:"public/images/utils/mask.png",
+
+		"name"		:"iad_android_phone",
+
+		"backofficeName"	:"Android {{size}}",
+
+		"htmlTemplate" 	:"public/templates/banners_templates/store_android_phone.html", 
+
+		"backgroundPreviewImage" 	: "public/images/{language}/back_android_phone.png",
+
+		"bannerWidth"		:640,
+
+		"100" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_android_100px_fond.png"
+			},
+
+			"logo":{
+				"width":80,
+				"height":80,
+				"x":20,
+				"y":2
+			},
+
+			"texts" : {
+				"appName":{
+					"font" : "Arial-Bold",
+					"x":112,
+					"y":38,
+					"size" :19,
+					"color" : "#ffffff",
+					"content" : "{content}"
+				},
+
+				"editor":{
+					"font" : "Arial",
+					"x":112,
+					"y":63,
+					"size" :14,
+					"color" : "#808080",
+					"content" : {
+						"fr" : "Par {content}",
+						"uk" : "By {content}"
+					}
+				}
+		}
+
+	},
+
+	"120" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_android_120px_fond.png"
+			},
+
+			"logo":{
+				"width":100,
+				"height":100,
+				"x":20,
+				"y":2
+			},
+
+			"texts" : {
+				"appName":{
+					"font" : "Arial-Bold",
+					"x":130,
+					"y":43,
+					"size" :19,
+					"color" : "#ffffff",
+					"content" : "{content}"
+				},
+
+				"editor":{
+					"font" : "Arial",
+					"x":130,
+					"y":75,
+					"size" :14,
+					"color" : "#808080",
+					"content" : {
+						"fr" : "Par {content}",
+						"uk" : "By {content}"
+					}
+				}
+		}
+
+	},
+
+	"150" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_android_150px_fond.png"
+			},
+
+			"logo":{
+				"width":120,
+				"height":120,
+				"x":20,
+				"y":2
+			},
+
+			"texts" : {
+				"appName":{
+					"font" : "Arial-Bold",
+					"x":153,
+					"y":64,
+					"size" :19,
+					"color" : "#ffffff",
+					"content" : "{content}"
+				},
+
+				"editor":{
+					"font" : "Arial",
+					"x":153,
+					"y":94,
+					"size" :14,
+					"color" : "#808080",
+					"content" : {
+						"fr" : "Par {content}",
+						"uk" : "By {content}"
+					}
+				}
+		}
+
+	}
+
+}
+
