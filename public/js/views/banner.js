@@ -173,10 +173,18 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			$('#error').fadeOut();
 			
 			var  	errorFormats 		= false,
+				errorGeneralInfo 	= false,
 				formatsLength 	= 0,
 				containerDevice 	= $(evt.target).closest('.scrapping-result'),
 				formats 		= containerDevice.find($('input[name="format"]'));
 			
+			var generalValidation = $('#generalAppInfo').find($('input.validation'));
+					if(generalValidation.length > 0){
+						errorGeneralInfo=this.validateInputs(generalValidation);		
+			}
+
+
+
 			formats.each(function(i){
 			
 				var formatName=$(this).val();
@@ -200,20 +208,9 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						}
 					}
 
-					var validationInputs = $(this).closest('.customsection').find($('input.validation'));
-					if(validationInputs.length > 0){
-						validationInputs.each(function(i){
-							var 	value 	= $(this).val(),
-								regex 	= $(this).prop('pattern');
-
-							var regex = new RegExp(regex);
-
-							if(!regex.test(value) ) {
-								$(this).closest('div.field-box').addClass('error');
-								$(this).next('.alert-msg').fadeIn();
-								errorFormats = true;
-							}
-						});					
+					var validationFormatInputs = $(this).closest('.customsection').find($('input.validation'));
+					if(validationFormatInputs.length > 0){
+						errorFormats=self.validateInputs(validationFormatInputs);				
 					}
 				}
 			});
@@ -223,7 +220,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 				errorFormats = true;
 			}
 		
-			if(!errorFormats){
+			if(!errorFormats && !errorGeneralInfo){
 				if($(evt.target).hasClass('preview-footer')){
 					preview = 'true';
 				}
@@ -271,6 +268,27 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			$('#preview-result').fadeOut(function(){
 						$('.scrapping-result').fadeIn();	
 			});
+		},
+
+		validateInputs : function(inputs){
+
+			var error = false;
+
+			inputs.each(function(i){
+				var 	value 	= $(this).val(),
+					regex 	= $(this).prop('pattern');
+
+				var regex = new RegExp(regex);
+
+				if(!regex.test(value) ) {
+					$(this).closest('div.field-box').addClass('error');
+					$(this).next('.alert-msg').fadeIn();
+					error =  true;
+				}
+				
+			});
+
+			return error;
 		},
  
 		clearErrors : function(evt){

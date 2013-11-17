@@ -16,6 +16,8 @@
 					<input type="hidden" value="{{campaignName}}" name="campaignName">
 			</div>
 
+			<div id="generalAppInfo">
+
 			<div class="field-box">
 				<label  for="name">Nom de l'application</label>
 					<input type="text" id="name" class="span4" value="{{appName}}" name="texts[appName][content]">
@@ -34,7 +36,7 @@
 
 			<div class="field-box">
 				<label  for="nbStars">Nombre d étoiles</label>
-					<input class="input-mini validation" id="nbStars" type="text"  value="{{nbStars}}" name="extras[images][stars][src]" pattern="[0-4](\.5)?|5">
+					<input class="input-mini validation" id="nbStars" type="text"  value="{{nbStars}}" name="extras[images][stars][src]" pattern="^([0-4]{1}(\.5)?)$|5">
 					<span class="alert-msg"><i class="icon-remove-sign"></i> Le nombre d'étoiles renseigné n'est pas correct</span>
 			</div>
 
@@ -49,7 +51,9 @@
 					<span><input type="radio" value="uk" name="lang"></span>UK 
 				</label>
 			</div>
-
+			
+			</div>
+		
 			<br class="clear">
 			<div class="row-fluid customsection">
 

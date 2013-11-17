@@ -11,13 +11,13 @@ module.exports = function (app, models) {
 			curl 			= require('curlrequest'),
 			crypto			= require('crypto'),
 			imageinfo 		= require('imageinfo'),
-			imageMagick 		= require('imagemagick'),
+			imageMagick 	= require('imagemagick'),
 			query 			= req.query,
 			formats 		= [],
 			banners 		= [],
 			adUnitsCreated 	= [],
 			linksPreviews 		= [],
-			logoPath 		=query.logo;
+			logoPath 		= query.logo;
 
 		if (typeof query.format == 'string'){
 			var format = query.format;
@@ -283,10 +283,11 @@ module.exports = function (app, models) {
 					}
 					console.log('>> create Preview');
 	    				
-	    				//On convertit l image en base64 et on la supprime
+	    				//On convertit l image en base64 et on la supprime et aussi la bannière qui a servi de modèle.
 					fs.readFile(configSite.PROJECT_DIR+'/'+configSite.TEMP_IMAGES+previewImageName, function(err, data){
 							var src = "data:image/png;base64," + new Buffer(data).toString('base64');
 							fs.unlinkSync(configSite.PROJECT_DIR+'/'+configSite.TEMP_IMAGES+previewImageName);
+							fs.unlinkSync(srcImage);
 							delete (banners[0]);
 							banners.splice(0,1);
 							processNextBanner(banners, nameLogo, src);	
