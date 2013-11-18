@@ -4,13 +4,13 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 
 		events 		: {
 			'click .showForm' 				: 'showForm',
-			'click #scrapping-info' 			: 'getScrapping',
+			'click #scrapping-info' 				: 'getScrapping',
 			'click .generate-footer' 			: 'generateFooter',
-			'click .preview-footer' 			: 'generateFooter',
+			'click .preview-footer' 				: 'generateFooter',
 			'blur #liseretMonochrome'			: 'updateColorsMonochrome',
 			'click #backToHome'				: 'render',
 			'click #backToScrapResult'			: 'backToScrap',
-			'click .back-menu-banner-generator' 	: 'render',
+			'click .back-menu-banner-generator' 		: 'render',
 			'focus input'					: 'clearErrors'
 		},
 
@@ -105,7 +105,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					scrapStore.forEach(function(scrap){
 
 
-						var 	device 		= Object.keys(scrap),
+						var 	device 			= Object.keys(scrap),
 							srcLogo		= scrap[device].icon,
 							campaignID		= scrap[device].campaignID,
 							trackLink 		= scrap[device].trackLink,
