@@ -59,7 +59,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			
 			var 	dataForm 	= this.form.serialize(),
 				self 		=this,
-				badUrl 	= false;
+				badUrl 		= false;
 
 
 			var stores = $('input[name^="store["]:checked');
@@ -118,6 +118,8 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 							deviceName 		= device.toString().replace('_', ' '),
 							formatStore 		= false,
 							sizesStore 		= '';
+							formatStoreIos7 	= false,
+							sizesStoreIos7 		= '';
 							formatMonochrome 	= false;
 							sizesMonochrome 	= '';
 
@@ -126,6 +128,10 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 								if(scrap[device].formats[i].name == 'store'){
 									formatStore = true;
 									sizesStore = scrap[device].formats[i].sizes;
+								}
+								if(scrap[device].formats[i].name == 'storeios7'){
+									formatStoreIos7 = true;
+									sizesStoreIos7 = scrap[device].formats[i].sizes;
 								}
 								if(scrap[device].formats[i].name == 'monochrome'){
 									formatMonochrome = true;
@@ -142,8 +148,8 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 							var multiColor = false;	
 						}
 
-
-						var templateConfig = {deviceName:deviceName, device:device, srcLogo : srcLogo, campaignID : campaignID, trackLink : trackLink, campaignName : campaignName, nbComments : nbComments, nbStars : nbStars, appName : appName, editor : editor, multiColor : multiColor, formatStore :formatStore, formatMonochrome : formatMonochrome, sizesStore : sizesStore, sizesMonochrome : sizesMonochrome };
+						//ici aussi, on ajoute des variables au template pour l ajout de nouveaux formats !
+						var templateConfig = {deviceName:deviceName, device:device, srcLogo : srcLogo, campaignID : campaignID, trackLink : trackLink, campaignName : campaignName, nbComments : nbComments, nbStars : nbStars, appName : appName, editor : editor, multiColor : multiColor, formatStore :formatStore, formatMonochrome : formatMonochrome, sizesStore : sizesStore, sizesMonochrome : sizesMonochrome,  formatStoreIos7: formatStoreIos7 , sizesStoreIos7 : sizesStoreIos7};
 						self.$el.html('').append(scrapTemplate(templateConfig));
 						self.errorBox = $('#error-formats');
 					});
@@ -191,14 +197,14 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 				if($(this).prop('checked')){
 					formatsLength+=1;
 					
-					//On check si l utilisateur a renseigné au moins une taille.
+					//On check si l'utilisateur a renseigné au moins une taille.
 					var sizes = $(this).closest('.customsection').find($('input[name="'+formatName+'[size]"]:checked')).length;
 					if(sizes ==0){
 						self.errorBox.fadeIn().append('<span> // Veuillez sélectionner au moins une taille pour chacun des formats sélectionnés</span>');
 						errorFormats = true;
 					}
 
-					//On check si l utilisateur a renseigné au moins une colueur pour les formats qui en ont besoin.
+					//On check si l utilisateur a renseigné au moins une couleur pour les formats qui en ont besoin.
 					var availableColors = $(this).closest('.customsection').find($('input[name="'+formatName+'[color]"]')).length;
 					if(availableColors >0){
 						var colors = $(this).closest('.customsection').find($('input[name="'+formatName+'[color]"]:checked')).length;
@@ -266,6 +272,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 
 		backToScrap : function(){
 			$('#preview-result').fadeOut(function(){
+						$(this).remove();
 						$('.scrapping-result').fadeIn();	
 			});
 		},

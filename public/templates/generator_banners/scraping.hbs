@@ -55,9 +55,9 @@
 			</div>
 		
 			<br class="clear">
-			<div class="row-fluid customsection">
-
+			
 			{{#if formatStore}}
+			<div class="row-fluid customsection">
 
 			<div class="field-box">
 				<label for="monochrome">Store ?</label>
@@ -108,6 +108,37 @@
 				</div>
 
 			</div>
+
+			</div>
+
+			{{/if}}
+
+
+			{{#if formatStoreIos7}}
+			<div class="row-fluid customsection">
+				<div class="field-box">
+					<label for="monochrome">Store Format iOs 7 ?</label>
+					<label class="checkbox">
+						<span><input type="checkbox" value="storeios7" name="format" class="showForm"></span>Oui 
+					</label>
+				</div>
+
+				<div class="hide">
+
+					<div class="field-box">
+
+						<label  for="colors">Tailles</label>
+						 {{#each sizesStoreIos7}}
+							
+							<label class="checkbox">
+								<input type="checkbox"  value="{{size}}" name="storeios7[size]">
+									{{size}}px
+							</label>
+						{{/each}}
+
+					</div>
+
+				</div>
 
 			</div>
 

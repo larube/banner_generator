@@ -1,0 +1,77 @@
+{	
+		"mask" 						:"public/images/utils/mask.png",
+
+		"name" 					:"storeios7_iphone",
+
+		"backofficeName"				:"Iad iPhone iOs7 {{size}}px",
+
+		"htmlTemplate" 				:"public/templates/banners_templates/store_iphone.html",
+
+		"backgroundPreviewImage" 			: "public/images/{language}/back_iphone.png",
+
+		"bannerWidth"					:640,
+
+		"bottomMarginHeightPreview"		:88,
+		
+		"140" : {
+
+			"backgroundImage" :{
+				"src" : "public/images/{language}/footer_iphone_ios7_140px.png"
+			},
+
+			"logo":{
+				"width":85,
+				"height":85,
+				"x":12,
+				"y":0
+			},
+
+			"texts" : {
+				"appName":{
+					"font" : "Arial",
+					"size" :17,
+					"x":120,
+					"y":24,
+					"color" : "#000",
+					"content" : "{content}" ,
+					"case"	: "uppercase"
+					},
+
+				"editor":{
+					"font" : "Arial",
+					"size" :16,
+					"x":120,
+					"y":48,
+					"color" : "#9c9c9c",
+					"content" : { 
+						"fr" : "par {content}",
+						"uk" : "by {content}"
+					}
+				},
+
+				"comments" :{
+					"font" : "Arial",
+					"size" :14,
+					"x":223,
+					"y":73,
+					"color" : "#000",
+					"content" : "({content})"
+				}
+
+			},
+
+
+			"extras"  :{
+				"images" : {
+
+					"stars" :{
+						"x"		:120,
+						"y" 		: 75,
+				 		"folder"		:"public/images/stars_ios7/",
+				 		"src"		: "{src}.png"
+					}
+				}
+			}
+	}
+}
+

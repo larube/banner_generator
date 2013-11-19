@@ -1,17 +1,17 @@
 {	
-		"mask" 		:"public/images/utils/mask.png",
+		"mask" 					:"public/images/utils/mask.png",
 
-		"name" 	:"store_iphone_gris",
+		"name" 				:"store_iphone_gris",
 
-		"backofficeName"	:"Iad iPhone {{size}} Gris",
+		"backofficeName"			:"Iad iPhone {{size}} Gris",
 
-		"htmlTemplate" 	:"public/templates/banners_templates/store_iphone.html",
+		"htmlTemplate" 			:"public/templates/banners_templates/store_iphone.html",
 
-		"backgroundPreviewImage" 	: "public/images/{language}/back_iphone.png",
+		"backgroundPreviewImage" 		: "public/images/{language}/back_iphone.png",
 
 		"bannerWidth"				:640,
 
-		"bottomMarginHeightPreview"		:90,
+		"bottomMarginHeightPreview"	:88,
 		
 		"100" : {
 

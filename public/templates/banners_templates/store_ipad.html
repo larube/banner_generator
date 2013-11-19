@@ -1,0 +1,43 @@
+<!doctype >
+<html>
+	<head>
+		<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<style type="text/css">
+		/* ======== DEFAULT CSS ======== */
+		body{margin:0;background:transparent;overflow:hidden}img{max-width:100%;display:block;vertical-align:middle;image-rendering:pixelated}a{-webkit-tap-highlight-color:rgba(200,0,0,0.0)}#nb-close{display:block;width:12%;height:10%;position:absolute;top:0;right:1%;border:0;background:rgba(0,0,0,0)}
+		/* ======== ANIMATION ======== */
+		
+		/* ======== CUSTOM CSS ======== */
+		#container{
+			position: relative;
+			overflow: hidden;
+		}
+		#background{
+			width:100%;
+			bottom:0;
+		}
+
+		#background-real
+		{
+			top:0%;
+			width:62%;
+			left:17%;
+		}
+		.absolute{
+			position: absolute;
+		}
+		</style>
+	</head>
+	<body>
+		
+			<div id="container">
+				<img src="http://commondatastorage.googleapis.com/nb-commons%2Fimg%2Fipad-footer-store-background.png" id="background">
+				<img src="{{pathToBanner}}" id="background-real" class="absolute">
+			</div>
+		
+		<script type="text/javascript">
+			{{ communicateScript }}
+		</script>
+	</body>
+</html>
