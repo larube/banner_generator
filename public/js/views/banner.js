@@ -189,8 +189,6 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						errorGeneralInfo=this.validateInputs(generalValidation);		
 			}
 
-
-
 			formats.each(function(i){
 			
 				var formatName=$(this).val();
