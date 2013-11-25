@@ -2,6 +2,7 @@ module.exports ={
 	PROJECT_DIR	 		: __dirname,
 	TEMP_IMAGES 		: "public/images/tmp/",
 	TEMP_HTML 			: 'public/templates/upload_banners/',
+	BANNERS_TEMPLATES 	: 'public/templates/banners_templates/',
 	WS_GET_CAMPAIGNS	: 'ws.numbate.com/service/Request/method/getCampaigns',
 	WS_POST_AD_UNIT		: 'http://ws.numbate.com/service/Request/method/insertAdUnit',
 	/*WS_POST_AD_UNIT		: 'amador.numbate-sk.com/service/Request/method/insertAdUnit',*/

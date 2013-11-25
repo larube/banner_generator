@@ -20,15 +20,14 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 
 		render : function(){
 			$('#error').fadeOut();
-			this.threeAView= new ThreeAIncView;
 			var self =this;
-			this.threeAView.showAjaxBackground();
+			ThreeAIncView.showAjaxBackground();
 			$.ajax({
 				
 				url: '/getCampaigns',
 				dataType: 'json'
 				}).done(function(data) {
-					self.threeAView.hideAjaxBackground();
+					ThreeAIncView.hideAjaxBackground();
 					var campaigns=data;
 					var out='';
 					for (campaign in campaigns){
@@ -36,26 +35,20 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					}
 					var templateConfig = {campaigns:out};
 					self.$el.html(bannerTemplate(templateConfig));
-					self.uniformSelect();
+					ThreeAIncView.uniformSelect();
 					self.$el.hide().fadeIn();
 					self.form = $('#addApplication');
 				}).error(function(){
-					self.threeAView.hideAjaxBackground();
+					ThreeAIncView.hideAjaxBackground();
 					self.showErrorMessage('Impossible de récupérer les campagnes, veuillez réessayer plus tard.');
 				})
 		},
 
-		uniformSelect : function(){	
-			$("input:checkbox, input:radio").uniform();
-			$(".select2").select2({
-				placeholder: ""
-			});
-		},
+		
 
 		getScrapping : function(e){
 			$('#error').fadeOut();
 			e.preventDefault();
-			var self = this;
 			
 			var 	dataForm 	= this.form.serialize(),
 				self 		=this,
@@ -93,7 +86,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			});
 			
 		if(!badUrl){			
-			this.threeAView.showAjaxBackground();
+			ThreeAIncView.showAjaxBackground();
 			this.$el.fadeOut();
 
 			$.ajax({
@@ -101,7 +94,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 				data : dataForm,
 				dataType: 'json'
 				}).done(function(scrapStore) {
-					self.threeAView.hideAjaxBackground();
+					ThreeAIncView.hideAjaxBackground();
 					scrapStore.forEach(function(scrap){
 
 
@@ -153,13 +146,13 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						self.$el.html('').append(scrapTemplate(templateConfig));
 						self.errorBox = $('#error-formats');
 					});
-					self.uniformSelect();
+					ThreeAIncView.uniformSelect();
 					self.scrappingResult=$('.scrapping-result');
 					self.$el.hide().fadeIn();	
 					
 					
 				}).error(function(){
-					self.threeAView.hideAjaxBackground();
+					ThreeAIncView.hideAjaxBackground();
 					self.showErrorMessage('Impossible de récupérer les infos de l\'application');
 				})
 			}
@@ -232,7 +225,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					preview = 'false';
 				}
 				var self = this;
-				this.threeAView.showAjaxBackground();
+				ThreeAIncView.showAjaxBackground();
 				var formData = $(evt.target).closest("form").serialize();
 				formData+='&isPreview='+preview;
 				$.ajax({
@@ -241,12 +234,12 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					dataType: 'json'
 					}).done(function(footers) {
 						if(preview !='true'){
-							self.threeAView.hideAjaxBackground();
+							ThreeAIncViewhideAjaxBackground();
 							var templateConfig = {backOfficeLinks:footers};
 							self.$el.append(showLinksTemplate(templateConfig));
 						}
 						else{	
-							self.threeAView.hideAjaxBackground();
+							ThreeAIncView.hideAjaxBackground();
 							var templateConfig = {previews:footers};
 							self.previewResult=$('#preview-result');
 							self.$el.append(showPreviewsTemplate(templateConfig));
@@ -256,7 +249,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						});
 					}).error(function(err){
 						console.log(err);
-						self.threeAView.hideAjaxBackground();
+						ThreeAIncView.hideAjaxBackground();
 						this.showErrorMessage('Impossible de générer les footers');
 				});
 			}

@@ -7,6 +7,7 @@ require.config({
 		Backbone 		: '/js/libs/backbone',
 		Handlebars 		: '/js/libs/Handlebars',
 		hbs 			: '/js/libs/hbs',
+		jqueryForm 		: '/js/libs/jquery.form',
 		templates		:'../templates',
 		ThreeAIncView 	: '/js/ThreeAIncView',
 		bootStrap 		: '/js/libs/bootstrap.min',
@@ -19,6 +20,7 @@ require.config({
 	shim :{
 		'Backbone':['Underscore', 'jQuery'],
 		'ThreeAInc' : ['Backbone'],
+		'ThreeAIncView' : ['Backbone'],
 		'jQuery': {exports: '$'},
 		'underscore': {exports: '_'}
 	}
@@ -26,6 +28,7 @@ require.config({
 	
 });
 
-require(['ThreeAInc'], function(ThreeAInc){
+require(['ThreeAInc', 'ThreeAIncView'], function(ThreeAInc,ThreeAIncView){
 	ThreeAInc.initialize();
+	ThreeAIncView.initialize();
 });

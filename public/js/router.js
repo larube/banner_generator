@@ -1,12 +1,13 @@
-define(['views/index', 'views/banner'], function(IndexView, BannerView){
+define(['views/index', 'views/banner', 'views/customImageBanner'], function(IndexView, BannerView, CustomImageBannerView){
 
 	var ThreeAIncRouter = Backbone.Router.extend({
 
 		currentView : null,
 
 		routes : { 
-			"index" 		: "index",
-			"banner" 	: "banner"
+			"index" 			: "index",
+			"banner" 			: "banner",
+			"customImageBanner" 	: "customBanner"
 		},
 
 		changeView : function(view){
@@ -23,6 +24,10 @@ define(['views/index', 'views/banner'], function(IndexView, BannerView){
 
 		banner: function(){
 			this.changeView(new BannerView());
+		},
+
+		customBanner: function(){
+			this.changeView(new CustomImageBannerView());
 		}
 	});
 

@@ -1,0 +1,70 @@
+<div class="row-fluid chart" id="title">
+	<h4 class="title">Nouvelle Bannière Avec Upload d'image</h4>
+</div>
+		
+<div class="row-fluid form-wrapper" id="allContent">
+	<div class="span4">
+		<form class="form-horizontal" id="uploadImageBannerForm" action="/uploadCustomImageBanner" method="post"  enctype="multipart/form-data">
+
+			<div class="control-group field-box">
+					<label class="control-label" for="campaign">Campagne</label>
+					<div class="controls">
+						<select class="span12 select2" name="campaignID">
+								{{{campaigns}}
+						</select>
+					</div>
+			</div>
+
+			<div class="control-group field-box"> 
+					<label class="control-label" for="track">Nom du Client</label>
+					<div class="controls">
+						<input type="text" id="clientName" name="clientName" value="" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+			</div>
+
+			<div class="control-group field-box"> 
+					<label class="control-label" for="track">Nom de la campagne</label>
+					<div class="controls">
+						<input type="text" id="campaignName" name="campaignName" value="" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+			</div>
+
+			<div class="control-group field-box"> 
+					<label class="control-label" for="track">TrackingLink</label>
+					<div class="controls">
+						<input type="text" id="trackLink" name="trackLink" value="" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+			</div>
+
+			<div class="control-group field-box"> 
+					<label class="control-label" for="track">Pixel d'impression</label>
+					<div class="controls">
+						<input type="text" id="pixelImpression" name="pixelImpression" value="" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+			</div>
+
+			
+			<div class="control-group field-box"> 
+					<label class="control-label" for="track">Nom du format dans le BackOffice</label>
+					<div class="controls">
+						<input type="text" id="formatName" name="formatName" value="" class="input-xxlarge" name="" class="input-xxlarge">
+					</div>
+			</div>
+
+			<div class="control-group field-box">
+				<label class="control-label" for="imageName">Image : </label>
+				<div class="controls">
+					<input type="file" id="customImage" name="customImage" accept="image/x-png, image/gif, image/jpeg, image/png">
+				</div>
+			</div>
+
+	
+			<input type="submit" class="btn-glow primary" value="Uploader l'image" id="uploadImageBanner">
+	
+
+
+		</form>
+
+	</div>
+
+</div>

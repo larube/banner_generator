@@ -1,6 +1,6 @@
-define(['ThreeAIncView', 'hbs!templates/index']
+define(['hbs!templates/index']
 	, function(ThreeAIncView,  indexTemplate){
-	var indexView = ThreeAIncView.extend({
+	var indexView = Backbone.View.extend({
 		el  		: $('#content'),
 
 

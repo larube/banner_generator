@@ -11,7 +11,7 @@ module.exports = function (app, models) {
 			curl 			= require('curlrequest'),
 			crypto			= require('crypto'),
 			imageinfo 		= require('imageinfo'),
-			imageMagick 	= require('imagemagick'),
+			imageMagick 		= require('imagemagick'),
 			query 			= req.query,
 			formats 		= [],
 			banners 		= [],
@@ -407,7 +407,7 @@ module.exports = function (app, models) {
 				type 		= 3,
 				width 		=  banners[0].config.bannerWidth,	
 				height 		= banners[0].options.size,
-				format 	="'footer'",
+				format 		="'footer'",
 				name 		= "'"+banners[0].config.backofficeName.replace('{{size}}', banners[0].options.size)+"'",
 				//Status 2 par défaut,  ce st à dire en pause
 				status 		= 2,
@@ -456,6 +456,160 @@ module.exports = function (app, models) {
 				} else {
 					callback(nameLogo);
 				}
+			});
+		}
+
+	});
+
+	app.post('/uploadCustomImageBanner', function(req, res){
+		var 	configSite		= require('../settings.js'),
+			fs 			= require('fs'),
+			gsUtils 			= require('gs_utils'),
+			sanitizer 		= require('sanitizer'),
+			curl 			= require('curlrequest'),
+			crypto			= require('crypto'),
+			imageinfo 		= require('imageinfo'),
+			imageHeight 		= 0,
+			imageWidth 		= 0,
+			adUnitsCreated 	= [];
+	
+		var tempPath = req.files.customImage.path;
+    		var savePath =  configSite.TEMP_IMAGES + req.files.customImage.name;
+
+		fs.rename(tempPath, savePath, function(error){
+			if(error)
+			{
+				throw error;
+			}
+			fs.unlink(tempPath, function(){
+				if(error)
+				{
+					throw error;
+				}
+					fs.readFile(savePath, function(err, data){
+						var 	infoImage 		= imageinfo(data);
+
+						imageHeight 		= infoImage.height,
+						imageWidth 		= infoImage.width;
+
+						//Todo : gérer les mauvais formats  d'images;
+						
+						//Creation du nom du nouveau bucket : Schema : bucketBannersName/EditorName/CampaignName/ImagesFolderName/
+						var bucketName = configSite.BUCKET_BANNERS+'/'+sanitizer.sanitizeFilename(req.body.clientName)+'/'+sanitizer.sanitizeFilename(req.body.campaignName)+'/'+configSite.STORAGE_IMAGES_NAME+'/';
+						
+						gsUtils.uploadImage(configSite.PATH_TO_GS, savePath, bucketName, createCustomImageBannerHtml, configSite.
+							STORAGE_BASE_URL);
+					});
+
+				});
+
+		});    
+
+		
+		function createCustomImageBannerHtml(linkToImage){
+			var 	templatePath 	= configSite.PROJECT_DIR+'/'+configSite.BANNERS_TEMPLATES+'customImageBannerTemplate.html',
+				htmlTemplate 	= '';
+
+			fs.readFile(templatePath, 'utf8', function (err, data) {
+				if (err){
+					throw err;
+				}
+				htmlTemplate=data;
+
+				//Injection de l image créée
+				var stringToReplace = '{{[ ]*pathToBanner[ ]*}}';
+				var replaceImage = new RegExp(stringToReplace,"g");
+				htmlTemplate = htmlTemplate.replace(replaceImage, linkToImage);
+
+				//Injection d un éventuel pixel d impression 
+				var pixelLink = '{{[ ]*linktoPixel[ ]*}}'
+				var replacePixel = new RegExp(pixelLink,"g");
+				htmlTemplate = htmlTemplate.replace(replacePixel, req.body.pixelImpression);
+
+				//Injection du JS
+				injectJavaScript(htmlTemplate);
+			});
+		}
+
+		/**
+		 * [injects Communicate Script in the HTML]
+		 * @param  {string} htmlTemplate 	[banner's HTML]
+		 * @return {}              			[description]
+		 */
+		function injectJavaScript(htmlTemplate){
+			var 	curl 		= require('curlrequest');
+	
+			var options = {
+				url: configSite.COMMUNICATE_URL
+			};
+
+			curl.request(options, function (err, communicateScript) {
+				var stringToReplace = '{{[ ]*communicateScript[ ]*}}';
+				var replace = new RegExp(stringToReplace,"g");
+				htmlTemplate = htmlTemplate.replace(replace, communicateScript);
+				uploadHtml(htmlTemplate);
+
+			});
+		}
+
+		/**
+		 * [uploadHtml banner's HTML to the storage]
+		 * @param  {string} htmlTemplate 	[banner's HTML]
+		 * @return {[type]}              		[description]
+		 */
+		function uploadHtml(htmlTemplate){
+			//Creation du nom du nouveau bucket : Shema : bucketBannersName/EditorName/CampaignName/FramesFolderName/
+			var bucketName = configSite.BUCKET_BANNERS+'/'+sanitizer.sanitizeFilename(req.body.clientName)+'/'+sanitizer.sanitizeFilename(req.body.campaignName)+'/'+configSite.STORAGE_FRAMES_NAME+'/';
+
+			var filename = sanitizer.sanitizeFilename(req.body.formatName)+'_'+sanitizer.sanitizeFilename(req.body.clientName)+'.html';
+			//Création d un fichier temporaire qui stocke le html
+			var file = configSite.PROJECT_DIR+'/'+configSite.TEMP_HTML+'/'+filename;
+			fs.writeFile(file, htmlTemplate, function(err) {
+				if(err) {
+					console.log(err);
+				} else {
+					gsUtils.uploadHtml(configSite.PATH_TO_GS, file, bucketName, createAdUnitForCustomImage, configSite.STORAGE_BASE_URL);
+				}
+			}); 
+		}
+
+		function createAdUnitForCustomImage(srcHtml){
+			var 	chtml 		= "'"+srcHtml+"'";
+				type 		= 3,
+				width 		= imageWidth,	
+				height 		= imageHeight,
+				format 		="'footer'",
+				name 		= "'"+req.body.formatName+"'",
+				//Status 2 par défaut,  ce st à dire en pause
+				status 		= 2,
+				campaigns_FK = req.body.campaignID,
+				click_url	= "'"+req.body.trackLink+"'";
+			
+			var post_click ='{"side":"left","type":"redirect", "src":"'+req.body.trackLink+'","link":"'+req.body.trackLink+'","embedded":"non", "effect":"flip","background":"", "icon":"","name":"","editor":"","banner":"","desc":"","screens":"","content":""}';
+
+			post_click="'"+post_click+"'";
+
+			var options = {
+				url: configSite.WS_POST_AD_UNIT,
+				method : 'POST',
+				data : {"chtml" : chtml, "type": type, "width" : width, "height" : height ,"format": format, "post_click" : post_click, "name" : name, "status" : status, "campaigns_FK" : campaigns_FK , "click_url":click_url} ,
+				verbose : true
+			};
+
+			curl.request(options, function (err, idAdUnit) {
+				if (err ){
+					 throw err;
+				}
+				//TODO : UNLINK evreything
+				
+				var stringToReplace = '"';
+					var replace = new RegExp(stringToReplace,"g");
+					idAdUnit = idAdUnit.replace( replace, '');
+					var link={};
+					link.title = configSite.LINK_TO_AD_UNIT+Number(idAdUnit);
+					adUnitsCreated.push(link);
+				res.send(adUnitsCreated);
+				return;
 			});
 		}
 
