@@ -58,9 +58,6 @@ define(['hbs!templates/generator_custom_images_banners/customImageBanner', 'hbs!
 				inputFile.next('br').next('.alert-msg').fadeIn();
 			}
 
-
-			return;
-
 			if(!errorCustomImageInputs && !errorInputFile){
 
 				ThreeAIncView.showAjaxBackground();
