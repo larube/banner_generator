@@ -29,6 +29,34 @@ define(function(require){
 			li.addClass('active').prepend('<div class="pointer"><div class="arrow"></div><div class="arrow_border"></div></div>');
 		},
 		
+		validateInputs : function(inputs){
+
+			var error = false;
+
+			inputs.each(function(i){
+				var 	value 	= $(this).val(),
+					regex 	= $(this).prop('pattern');
+
+				var regex = new RegExp(regex);
+
+				if(!regex.test(value) ) {
+					$(this).closest('div.field-box').addClass('error');
+					$(this).next('.alert-msg').fadeIn();
+					error =  true;
+				}
+				
+			});
+
+			return error;
+		},
+
+		fadeOutErrors : function(evt){
+				if($(evt.target).closest('.field-box').hasClass('error')){
+						$(evt.target).closest('.field-box').removeClass('error');
+						$(evt.target).next('.alert-msg').fadeOut();
+					}
+		},
+
 		uniformSelect : function(){	
 			$("input:checkbox, input:radio").uniform();
 			$(".select2").select2({

@@ -522,9 +522,11 @@ module.exports = function (app, models) {
 				htmlTemplate = htmlTemplate.replace(replaceImage, linkToImage);
 
 				//Injection d un éventuel pixel d impression 
-				var pixelLink = '{{[ ]*linktoPixel[ ]*}}'
-				var replacePixel = new RegExp(pixelLink,"g");
-				htmlTemplate = htmlTemplate.replace(replacePixel, req.body.pixelImpression);
+				if(typeof  req.body.pixelImpression!='undefined' &&  req.body.pixelImpression!=''){
+					var pixelLink = '{{[ ]*linktoPixel[ ]*}}'
+					var replacePixel = new RegExp(pixelLink,"g");
+					htmlTemplate = htmlTemplate.replace(replacePixel, req.body.pixelImpression);
+				}
 
 				//Injection du JS
 				injectJavaScript(htmlTemplate);

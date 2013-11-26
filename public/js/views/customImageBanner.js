@@ -1,9 +1,12 @@
-define(['hbs!templates/generator_custom_images_banners/customImageBanner', 'select2', 'uniform', 'utf8', 'jqueryForm', 'ThreeAIncView'], function(customImageBannerTemplate, select2, uniform, utf8, jqueryForm, ThreeAIncView){
+define(['hbs!templates/generator_custom_images_banners/customImageBanner', 'hbs!templates/generator_custom_images_banners/showLinkTemplate', 'select2', 'uniform', 'utf8', 'jqueryForm', 'ThreeAIncView'], function(customImageBannerTemplate, showLinkTemplate, select2, uniform, utf8, jqueryForm, ThreeAIncView){
 	var CustomImageBannerView =Backbone.View.extend({
 		el  		: $('#content'),
 
 		events 		: {
-			'submit #uploadImageBannerForm' : 'uploadCustomImage'
+			'submit #uploadImageBannerForm' 	: 'uploadCustomImage',
+			'click .backCutomImageForm' 	: 'backToForm',
+			'focus input'				: 'clearErrors',
+			'change #customImage'		: 'clearErrorInput'
 		},
 
 
@@ -26,6 +29,7 @@ define(['hbs!templates/generator_custom_images_banners/customImageBanner', 'sele
 					self.$el.html(customImageBannerTemplate(templateConfig));
 					ThreeAIncView.uniformSelect();
 					self.$el.hide().fadeIn();
+					self.imageUploadForm = $('.customImageFormContainer');
 					
 				}).error(function(){
 					ThreeAIncView.hideAjaxBackground();
@@ -35,26 +39,66 @@ define(['hbs!templates/generator_custom_images_banners/customImageBanner', 'sele
 		},
 
 		uploadCustomImage : function(evt){
+
 			evt.preventDefault();
-			ThreeAIncView.showAjaxBackground();
-			
-			var self = this;
-			var options  = {
-				data : {form:$(evt.target).serialize()},
-				error: function(xhr) {
-								ThreeAIncView.hideAjaxBackground();
-								console.log(xhr.status);
-							},
-				success: function(res) {
-								ThreeAIncView.hideAjaxBackground();
-								console.log(res);
-				}
-			};
-			$(evt.target).ajaxSubmit(options);
+			var 	errorCustomImageInputs 	= false,
+				errorInputFile 			= false,
+				self 				= this;
+
+			var generalValidation = $('#uploadImageBannerForm').find($('input.validation'));
+					if(generalValidation.length > 0){
+						errorCustomImageInputs=ThreeAIncView.validateInputs(generalValidation);		
+			}
+
+			var inputFile = $('#customImage');
+
+			if(inputFile.val() ==''){
+				errorInputFile = true;
+				inputFile.closest('div.field-box').addClass('error');
+				inputFile.next('br').next('.alert-msg').fadeIn();
+			}
+
+
+			return;
+
+			if(!errorCustomImageInputs && !errorInputFile){
+
+				ThreeAIncView.showAjaxBackground();
+
+				var options  = {
+					data : {form:$(evt.target).serialize()},
+					error: function(xhr) {
+									ThreeAIncView.hideAjaxBackground();
+									console.log(xhr.status);
+								},
+					success: function(footer) {
+									ThreeAIncView.hideAjaxBackground();
+									self.imageUploadForm.fadeOut(function(){
+										var templateConfig = {backOfficeLinks:footer};
+										self.$el.append(showLinkTemplate(templateConfig));
+										self.$el.hide().fadeIn();
+									});
+					}
+				};
+				$(evt.target).ajaxSubmit(options);
+			}
+		},
+
+		backToForm : function(){
+			$('#custom-image-bo').fadeOut(function(){
+						$(this).remove();
+						$('.customImageFormContainer').find('#customImage').val('');
+						$('.customImageFormContainer').fadeIn();	
+			});
+		},
+
+		clearErrors : function(evt){
+			ThreeAIncView.fadeOutErrors(evt);
+		},
+
+		clearErrorInput : function(evt){
+			$(evt.target).closest('div.field-box').find('.alert-msg').fadeOut();
 		}
-
-
-
 	});
 
 	return CustomImageBannerView;
