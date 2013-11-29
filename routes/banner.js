@@ -547,7 +547,7 @@ module.exports = function (app, models) {
 
 			curl.request(options, function (err, communicateScript) {
 				var stringToReplace = '{{[ ]*communicateScript[ ]*}}';
-				var replace = new RegExp(stringToReplace,"g");
+				var replace     = new RegExp(stringToReplace,"g");
 				htmlTemplate = htmlTemplate.replace(replace, communicateScript);
 				uploadHtml(htmlTemplate);
 
