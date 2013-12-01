@@ -2,7 +2,7 @@
 
 	<div class="back-menu-banner-generator"><h4><a class="btn-flat danger backButton">REVENIR</a></h4></div>
 
-	<form class="form-horizontal footer-generator" id="{{device}}-generator" method="post" action="#" >
+	<form class="form-horizontal footer-generator" id="{{device}}-generator" method="post" action="/generateFooters"  enctype="multipart/form-data">
 		<div class="row-fluid custom-header">
 			<h4>{{{deviceName}}}</h4>
 		</div>
@@ -175,6 +175,46 @@
 							</label>
 					{{/each}}
 			</div>
+
+			</div>
+		
+			</div>
+
+			{{/if}}
+
+			{{#if formatSecondClick}}
+	
+			<div class="row-fluid customsection"> 
+
+			<div class="field-box">
+				<label for="monochrome">Second Click ?</label>
+				<label class="checkbox">
+					<span><input type="checkbox" value="secondClick" name="format" class="showForm"></span>Oui 
+				</label>
+			</div>
+
+			<div class="hide">
+
+				<div class="field-box">
+					<label  for="nbStars">Image à uploader</label>
+						<input type="file" id="customImage" name="secondClick[customImage]" accept="image/x-png, image/gif, image/jpeg, image/png"><br>
+						<span class="alert-msg"><i class="icon-remove-sign"></i> Vous devez sélectionner une image !</span>
+				</div>
+
+				<div class="field-box">
+					<label  for="pixelImpression">Lien du pixel d'impression</label>
+						<input class="input-large color" id="pixelImpressionSecondClick"  type="text"  name="secondClick[pixelLInk]">
+				</div>
+
+				<div class="field-box">
+					<label for="colors">Tailles Second Click</label>	
+						{{#each sizesSecondClick}}
+								<label class="checkbox">
+									<input type="checkbox" value="{{size}}" name="secondClick[size]">
+									{{size}}px
+								</label>
+						{{/each}}
+				</div>
 
 			</div>
 		

@@ -1,16 +1,16 @@
-define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banners/scraping', 'hbs!templates/generator_banners/backOfficeLinks', 'hbs!templates/generator_banners/previewsBanners' ,'select2', 'uniform', 'utf8', 'ThreeAIncView'], function(bannerTemplate, scrapTemplate, showLinksTemplate, showPreviewsTemplate, select2, uniform, utf8, ThreeAIncView){
+define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banners/scraping', 'hbs!templates/generator_banners/backOfficeLinks', 'hbs!templates/generator_banners/previewsBanners' ,'select2', 'uniform', 'utf8', 'jqueryForm', 'ThreeAIncView'], function(bannerTemplate, scrapTemplate, showLinksTemplate, showPreviewsTemplate, select2, uniform, utf8, jqueryForm, ThreeAIncView){
 	var bannerView =Backbone.View.extend({
 		el  		: $('#content'),
 
 		events 		: {
 			'click .showForm' 				: 'showForm',
-			'click #scrapping-info' 				: 'getScrapping',
+			'click #scrapping-info' 			: 'getScrapping',
 			'click .generate-footer' 			: 'generateFooter',
-			'click .preview-footer' 				: 'generateFooter',
+			'click .preview-footer' 			: 'generateFooter',
 			'blur #liseretMonochrome'			: 'updateColorsMonochrome',
 			'click #backToHome'				: 'render',
 			'click #backToScrapResult'			: 'backToScrap',
-			'click .back-menu-banner-generator' 		: 'render',
+			'click .back-menu-banner-generator' 	: 'render',
 			'focus input'					: 'clearErrors'
 		},
 
@@ -115,6 +115,8 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 							sizesStoreIos7 		= '';
 							formatMonochrome 	= false;
 							sizesMonochrome 	= '';
+							formatSecondClick 	= false;
+							sizesSecondClick 	= '';
 
 							// L ajout d un nouveau type de  formats se fait ici !!
 							for(i=0, formatsLength = scrap[device].formats.length; i < formatsLength; i+=1){
@@ -130,6 +132,10 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 									formatMonochrome = true;
 									sizesMonochrome = scrap[device].formats[i].sizes;
 								}
+								if(scrap[device].formats[i].name == 'secondClick'){
+									formatSecondClick = true;
+									sizesSecondClick = scrap[device].formats[i].sizes;
+								}
 							}
 						
 			
@@ -142,7 +148,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						}
 
 						//ici aussi, on ajoute des variables au template pour l ajout de nouveaux formats !
-						var templateConfig = {deviceName:deviceName, device:device, srcLogo : srcLogo, campaignID : campaignID, trackLink : trackLink, campaignName : campaignName, nbComments : nbComments, nbStars : nbStars, appName : appName, editor : editor, multiColor : multiColor, formatStore :formatStore, formatMonochrome : formatMonochrome, sizesStore : sizesStore, sizesMonochrome : sizesMonochrome,  formatStoreIos7: formatStoreIos7 , sizesStoreIos7 : sizesStoreIos7};
+						var templateConfig = {deviceName:deviceName, device:device, srcLogo : srcLogo, campaignID : campaignID, trackLink : trackLink, campaignName : campaignName, nbComments : nbComments, nbStars : nbStars, appName : appName, editor : editor, multiColor : multiColor, formatStore :formatStore, formatMonochrome : formatMonochrome, sizesStore : sizesStore, sizesMonochrome : sizesMonochrome,  formatStoreIos7: formatStoreIos7 , sizesStoreIos7 : sizesStoreIos7, formatSecondClick: formatSecondClick,  sizesSecondClick: sizesSecondClick};
 						self.$el.html('').append(scrapTemplate(templateConfig));
 						self.errorBox = $('#error-formats');
 					});
@@ -218,6 +224,9 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			}
 		
 			if(!errorFormats && !errorGeneralInfo){
+
+				ThreeAIncView.showAjaxBackground();
+
 				if($(evt.target).hasClass('preview-footer')){
 					preview = 'true';
 				}
@@ -225,33 +234,37 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					preview = 'false';
 				}
 				var self = this;
-				ThreeAIncView.showAjaxBackground();
 				var formData = $(evt.target).closest("form").serialize();
 				formData+='&isPreview='+preview;
-				$.ajax({
-					url: '/generateFooters',
-					data : formData,
-					dataType: 'json'
-					}).done(function(footers) {
-						if(preview !='true'){
-							ThreeAIncViewhideAjaxBackground();
-							var templateConfig = {backOfficeLinks:footers};
-							self.$el.append(showLinksTemplate(templateConfig));
-						}
-						else{	
-							ThreeAIncView.hideAjaxBackground();
-							var templateConfig = {previews:footers};
-							self.previewResult=$('#preview-result');
-							self.$el.append(showPreviewsTemplate(templateConfig));
-						}
-						self.scrappingResult.fadeOut(function(){
-							self.$el.hide().fadeIn();	
-						});
-					}).error(function(err){
-						console.log(err);
-						ThreeAIncView.hideAjaxBackground();
-						this.showErrorMessage('Impossible de générer les footers');
-				});
+
+				var options  = {
+					data : {formData: formData},
+					error: function(err) {
+									console.log(err);
+									ThreeAIncView.hideAjaxBackground();
+									self.showErrorMessage('Impossible de générer les footers');	
+								},
+					success: function(footers) {
+						
+									if(preview !='true'){
+										ThreeAIncView.hideAjaxBackground();
+										var templateConfig = {backOfficeLinks:footers};
+										self.$el.append(showLinksTemplate(templateConfig));
+									}
+									else{	
+										ThreeAIncView.hideAjaxBackground();
+										console.log(footers);
+										var templateConfig = {previews:footers};
+										self.previewResult=$('#preview-result');
+										self.$el.append(showPreviewsTemplate(templateConfig));
+									}
+									self.scrappingResult.fadeOut(function(){
+										self.$el.hide().fadeIn();	
+									});
+					}
+				};
+				$(evt.target).closest("form").ajaxSubmit(options);
+			
 			}
 			
 		},

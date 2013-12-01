@@ -5,7 +5,7 @@ define(['views/index', 'views/banner', 'views/customImageBanner'], function(Inde
 		currentView : null,
 
 		routes : { 
-			"index" 			: "index",
+			"index" 				: "index",
 			"banner" 			: "banner",
 			"customImageBanner" 	: "customBanner"
 		},
@@ -28,7 +28,8 @@ define(['views/index', 'views/banner', 'views/customImageBanner'], function(Inde
 
 		customBanner: function(){
 			this.changeView(new CustomImageBannerView());
-		}
+		},
+
 	});
 
 	return new ThreeAIncRouter;

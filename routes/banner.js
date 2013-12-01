@@ -1,6 +1,6 @@
 module.exports = function (app, models) {
 
-	app.get('/generateFooters', function (req, res){
+	app.post('/generateFooters', function (req, res){
 		//IMPORTANT !!!! Ne pas supprimer, time out de 6 minutes pour créer un maximum de bannières 
 		res.connection.setTimeout(600000);
 		var 	bannerConstructor 	= require('banner_generator'),
@@ -11,20 +11,27 @@ module.exports = function (app, models) {
 			curl 			= require('curlrequest'),
 			crypto			= require('crypto'),
 			imageinfo 		= require('imageinfo'),
-			imageMagick 		= require('imagemagick'),
-			query 			= req.query,
+			imageMagick 	= require('imagemagick'),
+			querystring 		= require('querystring'),
+			query 			= req.body,
 			formats 		= [],
 			banners 		= [],
 			adUnitsCreated 	= [],
 			linksPreviews 		= [],
 			logoPath 		= query.logo;
 
+
+		//Si un seul format demandé 
 		if (typeof query.format == 'string'){
 			var format = query.format;
 			query.format = [];
 			query.format.push(format);
 		}
-	
+
+
+		//Si c est une preview qui est demandée
+		var isPreview = querystring.parse(query.formData).isPreview == 'true' ? true : false; 
+
 		//Traitement du formulaire de l utilisateur
 		Object.keys(query.format).forEach(function(i){
 			var formatToGenerate = query.format[i];
@@ -80,7 +87,6 @@ module.exports = function (app, models) {
 		function createAllBannerOptions(nameLogo){
 			for(format in formats){
 				var 	configFormat 		= formats[format].nameFormat+'.json',
-					/*config 			= require ('../config/banner_config/'+configFormat),*/
 					config 			= JSON.parse(fs.readFileSync(configSite.PROJECT_DIR+'/config/banner_config/'+configFormat, 'utf8')),
 					formatName 		= (formats[format].nameFormat.split('_'))[0];
 
@@ -130,6 +136,10 @@ module.exports = function (app, models) {
 		 * @return {array}               		[banner options]
 		 */
 		function buildOptions(query, config, bannerOptions, format){
+
+
+			bannerOptions.customImage = req.files && req.files[format] && req.files[format].customImage && req.files[format].customImage.path;
+
 
 			if (typeof query.texts != 'undefined' && typeof config[bannerOptions.size].texts !='undefined'){
 				var texts = Object.keys(query.texts);
@@ -190,7 +200,7 @@ module.exports = function (app, models) {
 			//Si ce n est la première bannière, on a un retour à stocker
 			if(typeof returnValue !='undefined'){
 				//Si mode PREVIEW, c est un string base 64 qui représente la bannière sur un fond
-				if(query.isPreview == 'true'){
+				if(isPreview == true){
 					var link={};
 					link.src = returnValue;
 					linksPreviews.push(link);
@@ -210,7 +220,7 @@ module.exports = function (app, models) {
 			if(banners.length == 0){
 				//Suppression du logo
 				fs.unlinkSync(configSite.PROJECT_DIR+'/'+configSite.TEMP_IMAGES+nameLogo);
-				if(query.isPreview == 'true'){
+				if(isPreview == true){
 					res.send(linksPreviews);
 				}
 				else{
@@ -219,8 +229,14 @@ module.exports = function (app, models) {
 				return;
 			}else{
 				//Sinon, on charge la suivante bannière
-				var banner = banners[0];
-				createBannerImage(banner, nameLogo);
+				//var banner = banners[0];
+				//Si on a une custom image uploadée par l user, on le fait ici :
+				if (typeof banners[0].options.customImage != 'undefined' && !isPreview){
+					uploadCustomImage(banners[0]);
+				}
+				else{
+					createBannerImage(banners[0], nameLogo);
+				}
 			}
 		}
 
@@ -232,7 +248,7 @@ module.exports = function (app, models) {
 		 */
 		function createBannerImage(banner, nameLogo){
 			//Callback diiférent selon si c'est une preview ou une création de bannière avec upload
-			if(query.isPreview == 'true'){
+			if(isPreview== true){
 				var callbackImageCreation = pasteImageOnBackroundForPreview;
 			}
 			else{
@@ -308,6 +324,43 @@ module.exports = function (app, models) {
 			gsUtils.uploadImage(configSite.PATH_TO_GS, srcImage, bucketName, createBannerHtml, configSite.STORAGE_BASE_URL);
 		}
 
+		/**
+		 * [uploads the banner on the storage]
+		 * @param  {string} srcImage 	[path to image]
+		 * @return {type}          		[description]
+		 */
+		function uploadCustomImage(banner){
+			var 	shasum 	= crypto.createHash('sha1'),
+				random 	= shasum.digest('hex')
+				nameImage  	= 'custom_'+random.substring(0,10)+'.png',
+				bucketName 	= configSite.BUCKET_BANNERS+'/'+sanitizer.sanitizeFilename(query.texts.editor.content)+'/'+sanitizer.sanitizeFilename(query.campaignName)+'/'+configSite.STORAGE_IMAGES_NAME+'/';
+				tempPath 	= banner.options.customImage;
+    				savePath 	=  configSite.TEMP_IMAGES + nameImage;
+
+			fs.rename(tempPath, savePath, function(error){
+				if(error)
+				{
+					throw error;
+				}
+				fs.unlink(tempPath, function(){
+					if(error)
+					{
+						throw error;
+					}
+						fs.readFile(savePath, function(err, data){
+							gsUtils.uploadImage(configSite.PATH_TO_GS, savePath, bucketName, saveCustomImageLink, configSite.
+								STORAGE_BASE_URL);
+						});
+
+					});
+			});
+		}
+
+		function saveCustomImageLink(srcCustomImage){
+			banners[0].options.pathToCustomImage = srcCustomImage;
+			createBannerImage(banners[0], nameLogo);
+		}
+
 
 		/**
 		 * [Creates the html for a banner]
@@ -318,7 +371,7 @@ module.exports = function (app, models) {
 			var 	size 			= banners[0].options.size,
 				format 		= banners[0].options.format,
 				templatePath 	= configSite.PROJECT_DIR+'/'+banners[0].config.htmlTemplate,
-				htmlTemplate 	= '';
+				htmlTemplate 		= '';
 
 			fs.readFile(templatePath, 'utf8', function (err, data) {
 				if (err){
@@ -343,6 +396,13 @@ module.exports = function (app, models) {
 						var replace = new RegExp(stringToReplace,"g");
 						htmlTemplate = htmlTemplate.replace( replace, value);
 					}
+				}
+
+				//pathToCustomImage
+				if(typeof banners[0].options.pathToCustomImage !='undefined'){
+					var stringToReplace = '{{[ ]*pathToCustomImage[ ]*}}';
+					var replace = new RegExp(stringToReplace,"g");
+					htmlTemplate = htmlTemplate.replace(replace, banners[0].options.pathToCustomImage);	
 				}
 
 				//Injection de l image créée
@@ -405,9 +465,9 @@ module.exports = function (app, models) {
 		function createAdUnit(srcHtml){
 			var 	chtml 		= "'"+srcHtml+"'";
 				type 		= 3,
-				width 		=  banners[0].config.bannerWidth,	
+				width 		= banners[0].config.bannerWidth,	
 				height 		= banners[0].options.size,
-				format 		="'footer'",
+				format 	= "'footer'",
 				name 		= "'"+banners[0].config.backofficeName.replace('{{size}}', banners[0].options.size)+"'",
 				//Status 2 par défaut,  ce st à dire en pause
 				status 		= 2,
@@ -580,9 +640,9 @@ module.exports = function (app, models) {
 				type 		= 3,
 				width 		= imageWidth,	
 				height 		= imageHeight,
-				format 		="'footer'",
+				format 	="'footer'",
 				name 		= "'"+req.body.formatName+"'",
-				//Status 2 par défaut,  ce st à dire en pause
+				//Status 2 par défaut,  'c e'st à dire en pause
 				status 		= 2,
 				campaigns_FK = req.body.campaignID,
 				click_url	= "'"+req.body.trackLink+"'";
