@@ -1,0 +1,150 @@
+{
+
+
+	"cube-right" :{
+
+		"stage1" : {
+			"animation-name" 	: "rotateCubeRightOut",
+			"transform-origin"	: "0% 50%",
+			"animation-duration"	: "0.6s",
+			"animation-timing"	: "ease-in"
+		},
+
+		"stage2" : {
+			"animation-name" 	: "rotateCubeRightIn",
+			"transform-origin"	: "100% 50%",
+			"animation-duration"	: "0.6s",
+			"animation-timing"	: "ease-in",
+			"animation-delay"	: "0s"
+		}
+	},
+
+	"cube-top" :{
+
+		"stage1" : {
+			"animation-name" 	: "rotateCubeTopOut ",
+			"transform-origin"	: "50% 100%",
+			"animation-duration"	: "0.6s",
+			"animation-timing"	: "ease-in"
+		},
+
+		"stage2" : {
+			"animation-name" 	: "rotateCubeTopIn",
+			"transform-origin"	: "50% 0%",
+			"animation-duration"	: "0.6s",
+			"animation-timing"	: "ease-in",
+			"animation-delay"	: "0s"
+		}
+	},
+
+	"flip-in-right" :{
+
+		"stage1" : {
+			"animation-name" 	: "flipOutRight",
+			"transform-origin"	: "50% 50%",
+			"animation-duration"	: "0.5s",
+			"animation-timing"	: "ease-in"
+		},
+
+		"stage2" : {
+			"animation-name" 	: "flipInRight",
+			"transform-origin"	: "50% 50%",
+			"animation-duration"	: "0.5s",
+			"animation-timing"	: "ease-out",
+			"animation-delay"	: "0.5s"
+		}
+	},
+
+	"flip-in-bottom" :{
+
+		"stage1" : {
+			"animation-name" 	: "flipOutTop",
+			"transform-origin"	: "50% 50%",
+			"animation-duration"	: "0.5s",
+			"animation-timing"	: "ease-in",
+		},
+
+		"stage2" : {
+			"animation-name" 	: "flipInBottom",
+			"transform-origin"	: "50% 50%",
+			"animation-duration"	: "0.5s",
+			"animation-timing"	: "ease-out",
+			"animation-delay"	: "0.5s"
+		}
+	},
+
+	"move-fade-bottom" :{
+
+		"stage1" : {
+			"animation-name" 	: "rotateFoldTop",
+			"transform-origin"	: "50% 100%",
+			"animation-duration"	: "0.7s",
+			"animation-timing"	: "ease"
+		},
+
+		"stage2" : {
+			"animation-name" 	: "moveFromBottomFade",
+			"transform-origin"	: "-100% -100%",
+			"animation-duration"	: "0.7s",
+			"animation-timing"	: "ease",
+			"animation-delay"	: "0s"
+		}
+	},
+
+
+	"move-fade-right" :{
+
+		"stage1" : {
+			"animation-name" 	: "rotateFoldLeft",
+			"transform-origin"	: "100% 50%",
+			"animation-duration"	: "0.7s",
+			"animation-timing"	: "ease"
+		},
+
+		"stage2" : {
+			"animation-name" 	: "moveFromRightFade",
+			"animation-duration"	: "0.7s",
+			"transform-origin"	: "50% 50%",
+			"animation-timing"	: "ease",
+			"animation-delay"	: "0s"
+		}
+	},
+
+	"pull-right" :{
+
+		"stage1" : {
+			"animation-name" 	: "rotatePushLeft",
+			"transform-origin"	: "0% 50%",
+			"animation-duration"	: "0.8s",
+			"animation-timing"	: "ease"
+		},
+
+		"stage2" : {
+			"animation-name" 	: "rotatePullRight",
+			"transform-origin"	: "100% 50%",
+			"animation-duration"	: "0.5s",
+			"animation-timing"	: "ease",
+			"animation-delay"	: "0.3s"
+		}
+	},
+
+	"pull-top" :{
+
+		"stage1" : {
+			"animation-name" 	: "rotatePushBottom",
+			"transform-origin"	: "50% 100%",
+			"animation-duration"	: "0.8s",
+			"animation-timing"	: "ease"
+		},
+
+		"stage2" : {
+			"animation-name" 	: "rotatePullTop",
+			"transform-origin"	: "50% 0%",
+			"animation-duration"	: "0.5s",
+			"animation-timing"	: "ease",
+			"animation-delay"	: "0.5s"
+		}
+	}
+
+
+}

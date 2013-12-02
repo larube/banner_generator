@@ -11,7 +11,7 @@ module.exports = function (app, models) {
 			curl 			= require('curlrequest'),
 			crypto			= require('crypto'),
 			imageinfo 		= require('imageinfo'),
-			imageMagick 	= require('imagemagick'),
+			imageMagick 		= require('imagemagick'),
 			querystring 		= require('querystring'),
 			query 			= req.body,
 			formats 		= [],
@@ -27,7 +27,6 @@ module.exports = function (app, models) {
 			query.format = [];
 			query.format.push(format);
 		}
-
 
 		//Si c est une preview qui est demandée
 		var isPreview = querystring.parse(query.formData).isPreview == 'true' ? true : false; 
@@ -137,10 +136,9 @@ module.exports = function (app, models) {
 		 */
 		function buildOptions(query, config, bannerOptions, format){
 
-
-			bannerOptions.customImage = req.files && req.files[format] && req.files[format].customImage && req.files[format].customImage.path;
-
-
+			bannerOptions.customImage 	= req.files && req.files[format] && req.files[format].customImage && req.files[format].customImage.path,
+			bannerOptions.clickPixelLink 	= typeof query[format].clickPixelLink !='undefined' ? query[format].clickPixelLink : '';
+			
 			if (typeof query.texts != 'undefined' && typeof config[bannerOptions.size].texts !='undefined'){
 				var texts = Object.keys(query.texts);
 							bannerOptions.texts = {};
@@ -229,8 +227,7 @@ module.exports = function (app, models) {
 				return;
 			}else{
 				//Sinon, on charge la suivante bannière
-				//var banner = banners[0];
-				//Si on a une custom image uploadée par l user, on le fait ici :
+				//Si on a une custom image uploadée par l user, on procède à l upload  ici :
 				if (typeof banners[0].options.customImage != 'undefined' && !isPreview){
 					uploadCustomImage(banners[0]);
 				}
@@ -398,17 +395,31 @@ module.exports = function (app, models) {
 					}
 				}
 
-				//pathToCustomImage
-				if(typeof banners[0].options.pathToCustomImage !='undefined'){
+				//Cas d une image uoploadée par l user
+				if(typeof banners[0].options.pathToCustomImage !='undefined' && banners[0].options.pathToCustomImage!=''){
 					var stringToReplace = '{{[ ]*pathToCustomImage[ ]*}}';
 					var replace = new RegExp(stringToReplace,"g");
 					htmlTemplate = htmlTemplate.replace(replace, banners[0].options.pathToCustomImage);	
 				}
 
-				//Injection de l image créée
+
+
+				//Injection du link de redirection
+				var stringToReplace = '{{[ ]*redirectLink[ ]*}}';
+				var replace = new RegExp(stringToReplace,"g");
+				htmlTemplate = htmlTemplate.replace(replace, query.trackLink);
+
+				//Injection de la bannière créée
 				var stringToReplace = '{{[ ]*pathToBanner[ ]*}}';
 				var replace = new RegExp(stringToReplace,"g");
 				htmlTemplate = htmlTemplate.replace(replace, linkToImage);
+
+				//Injection d un éventuel pixel d impression
+				if(typeof banners[0].options.clickPixelLink !='undefined' && banners[0].options.clickPixelLink !=''){
+					var stringToReplace = '{{[ ]*clickPixelLink[ ]*}}';
+					var replace = new RegExp(stringToReplace,"g");
+					htmlTemplate = htmlTemplate.replace(replace, banners[0].options.clickPixelLink);
+				}
 
 				//Injection du JS
 				injectJavaScript(htmlTemplate);

@@ -4,14 +4,15 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 
 		events 		: {
 			'click .showForm' 				: 'showForm',
-			'click #scrapping-info' 			: 'getScrapping',
+			'click #scrapping-info' 				: 'getScrapping',
 			'click .generate-footer' 			: 'generateFooter',
-			'click .preview-footer' 			: 'generateFooter',
+			'click .preview-footer' 				: 'generateFooter',
 			'blur #liseretMonochrome'			: 'updateColorsMonochrome',
 			'click #backToHome'				: 'render',
 			'click #backToScrapResult'			: 'backToScrap',
-			'click .back-menu-banner-generator' 	: 'render',
-			'focus input'					: 'clearErrors'
+			'click .back-menu-banner-generator' 		: 'render',
+			'focus input'					: 'clearErrors',
+			'change .input-file-validation'			: 'clearErrorInputFile'
 		},
 
 		showForm : function(evt){
@@ -211,6 +212,15 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						}
 					}
 
+
+					//On check si l utilisateur a renseigné aune image à uploader pour les formats qui en besopin.
+					var inputFile = $(this).closest('.customsection').find($('input[name$="[customImage]"]'));
+					if(inputFile.val() ==''){
+						errorFormats = true;
+						inputFile.closest('div.field-box').addClass('error');
+						inputFile.next('br').next('.alert-msg').fadeIn();
+					}
+
 					var validationFormatInputs = $(this).closest('.customsection').find($('input.validation'));
 					if(validationFormatInputs.length > 0){
 						errorFormats=ThreeAIncView.validateInputs(validationFormatInputs);				
@@ -284,6 +294,10 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
  
 		clearErrors : function(evt){
 			ThreeAIncView.fadeOutErrors(evt);
+		},
+
+		clearErrorInputFile : function(evt){
+			$(evt.target).closest('div.field-box').find('.alert-msg').fadeOut();
 		}
 	});
 
