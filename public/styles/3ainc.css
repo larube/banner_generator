@@ -42,3 +42,7 @@
 .custom-header h4{
 	text-transform: uppercase;
 }
+
+.previewTransition{
+	position:absolute;bottom: 34px;left: -83px;z-index: 999;display:none;
+}

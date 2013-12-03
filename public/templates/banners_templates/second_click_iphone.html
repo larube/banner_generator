@@ -136,10 +136,10 @@
             				</a>
             	</div>
 		<script type="text/javascript">
-			{{ communicateScript }}
+			var Banner=function(e){this.init(e)};Banner.prototype={init:function(e){this.cfg=e;if(e.type&&e.type=="redirect")this.addRedirectLink();else this.startPopupListener()},addRedirectLink:function(){if(!this.cfg.link)return;var e=this,t=document.createElement("a");t.href=[this.cfg.link,"&z=",e.cfg.zone,"&f=",e.cfg.format,"&a=",e.cfg.ad_id].join("");t.target="_blank";t.style.display="block";t.style.position="absolute";t.style.width="100%";t.style.height="100%";t.style.top=0;t.style.left=0;var n=document.getElementById("second-stage").appendChild(t);n.addEventListener("click",function(){e.addPixelTracking()})},addPixelTracking:function(){var e=document.createElement("img");e.src=this.cfg.tracking;e.style.width=0;e.style.height=0;e.style.opacity=0;document.getElementsByTagName("body")[0].appendChild(e)},startPopupListener:function(){if(Comunicate)document.addEventListener("click",function(){Comunicate.send("open-popup")})}};var Comunicate=function(e){this.init(e)};Comunicate.prototype={hooks:{},init:function(e){this.domain=e&&e.domain?e.domain:"*";this.target=e&&e.target?e.target:parent;this.startListening()},startListening:function(){var e=this;window.addEventListener("message",function(){var t=event.data;e.execHook(t)});return this},addHook:function(e,t){this.hooks[e]=this.hooks[e]||[];this.hooks[e].push(t);return this},removeHook:function(e,t){for(var n in this.hooks[e])if(this.hooks[e][n]===t)delete this.hooks[e][n]},execHook:function(e){var t=e.split(":");if(t.length>1){var n=t[0];t.splice(0,1);var r=t.join(":");switch(n){case"config":new Banner(JSON.parse(r));break}return}else t=t.join(":");if(this.hooks[e])for(var i=0;i<this.hooks[e].length;i++)if(typeof this.hooks[e][i]=="function")this.hooks[e][i]()},send:function(e){this.target.postMessage(e,this.domain);return this}};var Comunicate=new Comunicate({target:parent})
 		</script>
 
-		<script>
+		<script> 
 			var 	firstStage 	= document.getElementById('first-stage'),
 				secondStage 	= document.getElementById('second-stage');
 

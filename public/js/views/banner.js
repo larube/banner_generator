@@ -12,7 +12,9 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			'click #backToScrapResult'			: 'backToScrap',
 			'click .back-menu-banner-generator' 		: 'render',
 			'focus input'					: 'clearErrors',
-			'change .input-file-validation'			: 'clearErrorInputFile'
+			'change .input-file-validation'			: 'clearErrorInputFile',
+			'mouseover .fx-transition label'		: 'showTransitionPreview',
+			'mouseout .fx-transition label'			: 'hideTransitionPreview'
 		},
 
 		showForm : function(evt){
@@ -196,6 +198,16 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						inputFile.next('br').next('.alert-msg').fadeIn();
 					}
 
+					//On check si l utilisateur a renseigné au moins un effet de transition pour les formats qui en ont besoin.
+					var availableTransitions = $(this).closest('.customsection').find($('input[name="'+formatName+'[transitionFx]"]')).length;
+					if(availableTransitions >0){
+						var colors = $(this).closest('.customsection').find($('input[name="'+formatName+'[transitionFx]"]:checked')).length;
+						if(colors ==0){
+							self.errorBox.fadeIn().append('<span> // Veuillez sélectionner au moins un effet pour le(s) format(s) avec transition</span>');
+							errorFormats = true;
+						}
+					}
+
 					//Check des inputs ayant une classe "validation"
 					var validationFormatInputs = $(this).closest('.customsection').find($('input.validation'));
 					if(validationFormatInputs.length > 0){
@@ -264,6 +276,17 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 
 		clearErrorInputFile : function(evt){
 			$(evt.target).closest('div.field-box').find('.alert-msg').fadeOut();
+		},
+
+		showTransitionPreview : function(evt){
+			var iframe = $(evt.target).find('div.previewTransition').find('iframe');
+			iframe.attr('src', iframe.attr('src'));
+			$(evt.target).find('div.previewTransition').show();
+
+		},
+
+		hideTransitionPreview : function(evt){
+			$(evt.target).find('div.previewTransition').hide();			
 		}
 	});
 

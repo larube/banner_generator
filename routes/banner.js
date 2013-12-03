@@ -478,7 +478,10 @@ module.exports = function (app, models) {
 			//Creation du nom du nouveau bucket : Shema : bucketBannersName/EditorName/CampaignName/FramesFolderName/
 			var bucketName = configSite.BUCKET_BANNERS+'/'+sanitizer.sanitizeFilename(query.texts.editor.content)+'/'+sanitizer.sanitizeFilename(query.campaignName)+'/'+configSite.STORAGE_FRAMES_NAME+'/';
 
-			var filename = banners[0].config.name+'_'+sanitizer.sanitizeFilename(query.texts.appName.content)+'_'+banners[0].options.lang+'_'+banners[0].options.size+'.html';
+
+			var fxName = typeof banners[0].options.cssTransition !='undefined' ?  '_'+banners[0].options.cssTransition : '';
+
+			var filename = banners[0].config.name+'_'+sanitizer.sanitizeFilename(query.texts.appName.content)+'_'+banners[0].options.lang+'_'+banners[0].options.size+fxName+'.html';
 			//Création d un fichier temporaire qui stocke le html
 			var file = configSite.PROJECT_DIR+'/'+configSite.TEMP_HTML+'/'+filename;
 			fs.writeFile(file, htmlTemplate, function(err) {
