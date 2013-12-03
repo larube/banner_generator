@@ -20,9 +20,9 @@
             		top: 0;
             		left:0;
             		z-index: 10;
-            		-webkit-transform-origin: 50% 50%;
-        			-webkit-animation-duration : 0.5s;
-        			-webkit-animation-timing-function: ease-in;
+            		-webkit-transform-origin: {{transform-origin-stageOne}};
+        			-webkit-animation-duration : {{animation-duration-stageOne}};
+        			-webkit-animation-timing-function: {{animation-timing-stageOne}};
         			-webkit-animation-fill-mode : both;
 		}
 		#second-stage{
@@ -33,10 +33,10 @@
 			top:0;
 			left:0;
 			z-index: -50;
-			-webkit-transform-origin: 50% 50%;
-         			-webkit-animation-duration : 0.5s;
-        			-webkit-animation-timing-function: ease-in;
-         			-webkit-animation-delay:0.5s;
+			-webkit-transform-origin: {{transform-origin-stageTwo}};
+         			-webkit-animation-duration : {{animation-duration-stageTwo}};
+        			-webkit-animation-timing-function: {{animation-timing-stageTwo}};
+         			-webkit-animation-delay:{{animation-delay-stageTwo}};
          			-webkit-animation-fill-mode : both;
 		}
 
@@ -150,8 +150,8 @@
 					img.style.height 	= 0;
 					img.style.border 	= 'none';
 					document.body.appendChild(img);
-					firstStage.style.webkitAnimationName = 'flipOutRight';
-					secondStage.style.webkitAnimationName = 'flipInRight';
+					firstStage.style.webkitAnimationName = '{{animation-stageOne}}';
+					secondStage.style.webkitAnimationName = '{{animation-stageTwo}}';
 					secondStage.style.display = 'block';
 				});
 

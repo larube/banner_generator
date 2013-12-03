@@ -24,7 +24,6 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			var self =this;
 			ThreeAIncView.showAjaxBackground();
 			$.ajax({
-				
 				url: '/getCampaigns',
 				dataType: 'json'
 				}).done(function(data) {
@@ -45,8 +44,6 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 				})
 		},
 
-		
-
 		getScrapping : function(e){
 			$('#error').fadeOut();
 			e.preventDefault();
@@ -55,26 +52,17 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 				self 		=this,
 				badUrl 		= false;
 
-
+			//Check combien  de devices demande l user, on en veut qu un seul
 			var stores = $('input[name^="store["]:checked');
-
-			if(stores.length == 0){
-				this.showErrorMessage('Veuillez choisir un device');
+			if(stores.length != 1){
+				this.showErrorMessage('Veuillez choisir UN device');
 				return;
 			}
-
-			if(stores.length > 1){
-				this.showErrorMessage('Veuillez choisir un seul device à la fois');
-				return;
-			}
-			
 
 			$('.application-url').each(function(i){
-
-				var isChecked = $(this).closest('.hide').prev('div').find('.checker span');
-
-				var 	value 	= $(this).val(),
-					regex 	= $(this).prop('pattern');
+				var 	isChecked 	= $(this).closest('.hide').prev('div').find('.checker span');
+					value 		= $(this).val(),
+					regex 		= $(this).prop('pattern');
 
 				var regex = new RegExp(regex);
 
@@ -83,7 +71,6 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					$(this).next('.alert-msg').fadeIn();
 					badUrl = true;
 				}
-
 			});
 			
 		if(!badUrl){			
@@ -97,8 +84,6 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 				}).done(function(scrapStore) {
 					ThreeAIncView.hideAjaxBackground();
 					scrapStore.forEach(function(scrap){
-
-
 						var 	device 			= Object.keys(scrap),
 							srcLogo		= scrap[device].icon,
 							campaignID		= scrap[device].campaignID,
@@ -138,15 +123,8 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 									sizesSecondClick = scrap[device].formats[i].sizes;
 								}
 							}
-						
-			
-					
-						if(typeof scrap[device].multicolor !='undefined'){
-							var multiColor = true;
-						}
-						else{
-							var multiColor = false;	
-						}
+
+						var multiColor = typeof scrap[device].multicolor !='undefined';
 
 						//ici aussi, on ajoute des variables au template pour l ajout de nouveaux formats !
 						var templateConfig = {deviceName:deviceName, device:device, srcLogo : srcLogo, campaignID : campaignID, trackLink : trackLink, campaignName : campaignName, nbComments : nbComments, nbStars : nbStars, appName : appName, editor : editor, multiColor : multiColor, formatStore :formatStore, formatMonochrome : formatMonochrome, sizesStore : sizesStore, sizesMonochrome : sizesMonochrome,  formatStoreIos7: formatStoreIos7 , sizesStoreIos7 : sizesStoreIos7, formatSecondClick: formatSecondClick,  sizesSecondClick: sizesSecondClick};
@@ -157,14 +135,12 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 					self.scrappingResult=$('.scrapping-result');
 					self.$el.hide().fadeIn();	
 					
-					
 				}).error(function(){
 					ThreeAIncView.hideAjaxBackground();
 					self.showErrorMessage('Impossible de récupérer les infos de l\'application');
 				})
 			}
 		},
-
 
 		showErrorMessage : function(msg){
 			$('#error').find('i').text(msg);
@@ -212,7 +188,6 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						}
 					}
 
-
 					//On check si l utilisateur a renseigné aune image à uploader pour les formats qui en besopin.
 					var inputFile = $(this).closest('.customsection').find($('input[name$="[customImage]"]'));
 					if(inputFile.val() ==''){
@@ -221,6 +196,7 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 						inputFile.next('br').next('.alert-msg').fadeIn();
 					}
 
+					//Check des inputs ayant une classe "validation"
 					var validationFormatInputs = $(this).closest('.customsection').find($('input.validation'));
 					if(validationFormatInputs.length > 0){
 						errorFormats=ThreeAIncView.validateInputs(validationFormatInputs);				
@@ -234,17 +210,10 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			}
 		
 			if(!errorFormats && !errorGeneralInfo){
-
 				ThreeAIncView.showAjaxBackground();
-
-				if($(evt.target).hasClass('preview-footer')){
-					preview = 'true';
-				}
-				else{
-					preview = 'false';
-				}
-				var self = this;
-				var formData = $(evt.target).closest("form").serialize();
+				var	preview 	= $(evt.target).hasClass('preview-footer') ? 'true' : 'false';
+					self 		= this
+					formData 	= $(evt.target).closest("form").serialize();					
 				formData+='&isPreview='+preview;
 
 				var options  = {
@@ -271,12 +240,10 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 									self.scrappingResult.fadeOut(function(){
 										self.$el.hide().fadeIn();	
 									});
-					}
+								}
 				};
 				$(evt.target).closest("form").ajaxSubmit(options);
-			
 			}
-			
 		},
 
 		updateColorsMonochrome : function(evt){
@@ -291,7 +258,6 @@ define(['hbs!templates/generator_banners/banner', 'hbs!templates/generator_banne
 			});
 		},
 
- 
 		clearErrors : function(evt){
 			ThreeAIncView.fadeOutErrors(evt);
 		},

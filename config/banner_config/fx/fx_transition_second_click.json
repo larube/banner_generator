@@ -4,90 +4,90 @@
 	"cube-right" :{
 
 		"stage1" : {
-			"animation-name" 	: "rotateCubeRightOut",
-			"transform-origin"	: "0% 50%",
-			"animation-duration"	: "0.6s",
-			"animation-timing"	: "ease-in"
+			"animation-stageOne" 		: "rotateCubeRightOut",
+			"transform-origin-stageOne"		: "0% 50%",
+			"animation-duration-stageOne"	: "0.6s",
+			"animation-timing-stageOne"		: "ease-in"
 		},
 
 		"stage2" : {
-			"animation-name" 	: "rotateCubeRightIn",
-			"transform-origin"	: "100% 50%",
-			"animation-duration"	: "0.6s",
-			"animation-timing"	: "ease-in",
-			"animation-delay"	: "0s"
+			"animation-stageTwo" 		: "rotateCubeRightIn",
+			"transform-origin-stageTwo"		: "100% 50%",
+			"animation-duration-stageTwo"	: "0.6s",
+			"animation-timing-stageTwo"		: "ease-in",
+			"animation-delay-stageTwo"		: "0s"
 		}
 	},
 
 	"cube-top" :{
 
 		"stage1" : {
-			"animation-name" 	: "rotateCubeTopOut ",
-			"transform-origin"	: "50% 100%",
-			"animation-duration"	: "0.6s",
-			"animation-timing"	: "ease-in"
+			"animation-stageOne" 		: "rotateCubeTopOut ",
+			"transform-origin-stageOne"		: "50% 100%",
+			"animation-duration-stageOne"	: "0.6s",
+			"animation-timing-stageOne"		: "ease-in"
 		},
 
 		"stage2" : {
-			"animation-name" 	: "rotateCubeTopIn",
-			"transform-origin"	: "50% 0%",
-			"animation-duration"	: "0.6s",
-			"animation-timing"	: "ease-in",
-			"animation-delay"	: "0s"
+			"animation-stageTwo" 		: "rotateCubeTopIn",
+			"transform-origin-stageTwo"		: "50% 0%",
+			"animation-duration-stageTwo"	: "0.6s",
+			"animation-timing-stageTwo"		: "ease-in",
+			"animation-delay-stageTwo"		: "0s"
 		}
 	},
 
 	"flip-in-right" :{
 
 		"stage1" : {
-			"animation-name" 	: "flipOutRight",
-			"transform-origin"	: "50% 50%",
-			"animation-duration"	: "0.5s",
-			"animation-timing"	: "ease-in"
+			"animation-stageOne" 		: "flipOutRight",
+			"transform-origin-stageOne"		: "50% 50%",
+			"animation-duration-stageOne"	: "0.5s",
+			"animation-timing-stageOne"		: "ease-in"
 		},
 
 		"stage2" : {
-			"animation-name" 	: "flipInRight",
-			"transform-origin"	: "50% 50%",
-			"animation-duration"	: "0.5s",
-			"animation-timing"	: "ease-out",
-			"animation-delay"	: "0.5s"
+			"animation-stageTwo" 		: "flipInRight",
+			"transform-origin-stageTwo"		: "50% 50%",
+			"animation-duration-stageTwo"	: "0.5s",
+			"animation-timing-stageTwo"		: "ease-out",
+			"animation-delay-stageTwo"		: "0.5s"
 		}
 	},
 
 	"flip-in-bottom" :{
 
 		"stage1" : {
-			"animation-name" 	: "flipOutTop",
-			"transform-origin"	: "50% 50%",
-			"animation-duration"	: "0.5s",
-			"animation-timing"	: "ease-in",
+			"animation-stageOne" 		: "flipOutTop",
+			"transform-origin-stageOne"		: "50% 50%",
+			"animation-duration-stageOne"	: "0.5s",
+			"animation-timing-stageOne"		: "ease-in"
 		},
 
 		"stage2" : {
-			"animation-name" 	: "flipInBottom",
-			"transform-origin"	: "50% 50%",
-			"animation-duration"	: "0.5s",
-			"animation-timing"	: "ease-out",
-			"animation-delay"	: "0.5s"
+			"animation-stageTwo" 		: "flipInBottom",
+			"transform-origin-stageTwo"		: "50% 50%",
+			"animation-duration-stageTwo"	: "0.5s",
+			"animation-timing-stageTwo"		: "ease-out",
+			"animation-delay-stageTwo"		: "0.5s"
 		}
 	},
 
 	"move-fade-bottom" :{
 
 		"stage1" : {
-			"animation-name" 	: "rotateFoldTop",
-			"transform-origin"	: "50% 100%",
-			"animation-duration"	: "0.7s",
-			"animation-timing"	: "ease"
+			"animation-stageOne" 		: "rotateFoldTop",
+			"transform-origin-stageOne"		: "50% 100%",
+			"animation-duration-stageOne"	: "0.7s",
+			"animation-timing-stageOne"		: "ease"
 		},
 
 		"stage2" : {
-			"animation-name" 	: "moveFromBottomFade",
-			"transform-origin"	: "-100% -100%",
-			"animation-duration"	: "0.7s",
-			"animation-timing"	: "ease",
-			"animation-delay"	: "0s"
+			"animation-stageTwo" 		: "moveFromBottomFade",
+			"transform-origin-stageTwo"		: "-100% -100%",
+			"animation-duration-stageTwo"	: "0.7s",
+			"animation-timing-stageTwo"		: "ease",
+			"animation-delay-stageTwo"		: "0s"
 		}
 	},
 
@@ -95,56 +95,54 @@
 	"move-fade-right" :{
 
 		"stage1" : {
-			"animation-name" 	: "rotateFoldLeft",
-			"transform-origin"	: "100% 50%",
-			"animation-duration"	: "0.7s",
-			"animation-timing"	: "ease"
+			"animation-stageOne" 		: "rotateFoldLeft",
+			"transform-origin-stageOne"		: "100% 50%",
+			"animation-duration-stageOne"	: "0.7s",
+			"animation-timing-stageOne"		: "ease"
 		},
 
 		"stage2" : {
-			"animation-name" 	: "moveFromRightFade",
-			"animation-duration"	: "0.7s",
-			"transform-origin"	: "50% 50%",
-			"animation-timing"	: "ease",
-			"animation-delay"	: "0s"
+			"animation-stageTwo" 		: "moveFromRightFade",
+			"transform-origin-stageTwo"		: "50% 50%",
+			"animation-duration-stageTwo"	: "0.7s",
+			"animation-timing-stageTwo"		: "ease",
+			"animation-delay-stageTwo"		: "0s"
 		}
 	},
 
 	"pull-right" :{
 
 		"stage1" : {
-			"animation-name" 	: "rotatePushLeft",
-			"transform-origin"	: "0% 50%",
-			"animation-duration"	: "0.8s",
-			"animation-timing"	: "ease"
+			"animation-stageOne" 		: "rotatePushLeft",
+			"transform-origin-stageOne"		: "0% 50%",
+			"animation-duration-stageOne"	: "0.8s",
+			"animation-timing-stageOne"		: "ease"
 		},
 
 		"stage2" : {
-			"animation-name" 	: "rotatePullRight",
-			"transform-origin"	: "100% 50%",
-			"animation-duration"	: "0.5s",
-			"animation-timing"	: "ease",
-			"animation-delay"	: "0.3s"
+			"animation-stageTwo" 		: "rotatePullRight",
+			"transform-origin-stageTwo"		: "100% 50%",
+			"animation-duration-stageTwo"	: "0.5s",
+			"animation-timing-stageTwo"		: "ease",
+			"animation-delay-stageTwo"		: "0.3s"
 		}
 	},
 
 	"pull-top" :{
 
 		"stage1" : {
-			"animation-name" 	: "rotatePushBottom",
-			"transform-origin"	: "50% 100%",
-			"animation-duration"	: "0.8s",
-			"animation-timing"	: "ease"
+			"animation-stageOne" 		: "rotatePushBottom",
+			"transform-origin-stageOne"		: "50% 100%",
+			"animation-duration-stageOne"	: "0.8s",
+			"animation-timing-stageOne"		: "ease"
 		},
 
 		"stage2" : {
-			"animation-name" 	: "rotatePullTop",
-			"transform-origin"	: "50% 0%",
-			"animation-duration"	: "0.5s",
-			"animation-timing"	: "ease",
-			"animation-delay"	: "0.5s"
+			"animation-stageTwo" 		: "rotatePullTop",
+			"transform-origin-stageTwo"		: "50% 0%",
+			"animation-duration-stageTwo"	: "0.5s",
+			"animation-timing-stageTwo"		: "ease",
+			"animation-delay-stageTwo"		: "0.5s"
 		}
 	}
-
-
 }

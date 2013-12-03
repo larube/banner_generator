@@ -68,11 +68,9 @@
 
 			<div class="hide">
 
-			
 				{{#if multiColor}}
 					<div class="field-box">
 						<label  for="colors">Couleurs</label>
-
 							<label class="checkbox">
 								<input type="checkbox"value="red" name="store[color]">
 									Rouge
@@ -92,10 +90,7 @@
 					</div>
 				{{/if}}
 
-				
-
 				<div class="field-box">
-
 					<label  for="colors">Tailles</label>
 					 {{#each sizesStore}}
 						
@@ -104,9 +99,7 @@
 								{{size}}px
 						</label>
 					{{/each}}
-
 				</div>
-
 			</div>
 
 			</div>
@@ -124,9 +117,7 @@
 				</div>
 
 				<div class="hide">
-
 					<div class="field-box">
-
 						<label  for="colors">Tailles</label>
 						 {{#each sizesStoreIos7}}
 							
@@ -135,9 +126,7 @@
 									{{size}}px
 							</label>
 						{{/each}}
-
 					</div>
-
 				</div>
 
 			</div>
@@ -148,35 +137,35 @@
 	
 			<div class="row-fluid customsection"> 
 
-			<div class="field-box">
-				<label for="monochrome">Monochrome ?</label>
-				<label class="checkbox">
-					<span><input type="checkbox" value="monochrome" name="format" class="showForm"></span>Oui 
-				</label>
-			</div>
-
-			<div class="hide">
-
 				<div class="field-box">
-					<label  for="nbStars">Code Couleur Liseret Monochrome</label>
-						<input class="input-large color validation" id="liseretMonochrome"  type="text" pattern="[a-fA-F0-9]{6}" name="monochrome[texts][punchline][color]">
-						<span class="alert-msg"><i class="icon-remove-sign"></i> La couleur renseignée n'est pas correcte</span>
-						<input type="hidden" id="liseretColor" name="monochrome[extras][shapes][liseret][color]">
-						<input type="hidden" id="arrowColor" name="monochrome[htmlVars][arrow-color]">
-						<input type="hidden" id="punchline-content"  value="{{appName}}" class="span8" name="monochrome[texts][punchline][content]">
+					<label for="monochrome">Monochrome ?</label>
+					<label class="checkbox">
+						<span><input type="checkbox" value="monochrome" name="format" class="showForm"></span>Oui 
+					</label>
 				</div>
 
-			<div class="field-box">
-				<label for="colors">Tailles Monochrome</label>	
-					{{#each sizesMonochrome}}
-							<label class="checkbox">
-								<input type="checkbox" value="{{size}}" name="monochrome[size]">
-								{{size}}px
-							</label>
-					{{/each}}
-			</div>
+				<div class="hide">
 
-			</div>
+					<div class="field-box">
+						<label  for="nbStars">Code Couleur Liseret Monochrome</label>
+							<input class="input-large color validation" id="liseretMonochrome"  type="text" pattern="[a-fA-F0-9]{6}" name="monochrome[texts][punchline][color]">
+							<span class="alert-msg"><i class="icon-remove-sign"></i> La couleur renseignée n'est pas correcte</span>
+							<input type="hidden" id="liseretColor" name="monochrome[extras][shapes][liseret][color]">
+							<input type="hidden" id="arrowColor" name="monochrome[htmlVars][arrow-color]">
+							<input type="hidden" id="punchline-content"  value="{{appName}}" class="span8" name="monochrome[texts][punchline][content]">
+					</div>
+
+					<div class="field-box">
+						<label for="colors">Tailles Monochrome</label>	
+							{{#each sizesMonochrome}}
+									<label class="checkbox">
+										<input type="checkbox" value="{{size}}" name="monochrome[size]">
+										{{size}}px
+									</label>
+							{{/each}}
+					</div>
+
+				</div>
 		
 			</div>
 
@@ -214,6 +203,42 @@
 									{{size}}px
 								</label>
 						{{/each}}
+				</div>
+
+				<div class="field-box">
+					<label for="colors">Effet de Transition</label>
+						<label class="checkbox">
+							<input type="checkbox" value="cube-right" name="secondClick[transitionFx]">
+							Cube Droite
+						</label>
+						<label class="checkbox">
+							<input type="checkbox" value="cube-top" name="secondClick[transitionFx]">
+							Cube Haut
+						</label>
+						<label class="checkbox">
+							<input type="checkbox" value="flip-in-right" name="secondClick[transitionFx]">
+							"Flip" Droite 
+						</label>
+						<label class="checkbox">
+							<input type="checkbox" value="flip-in-bottom" name="secondClick[transitionFx]">
+							"Flip" Bas 
+						</label>
+						<label class="checkbox">
+							<input type="checkbox" value="move-fade-bottom" name="secondClick[transitionFx]">
+							Disparition Bas 
+						</label>
+						<label class="checkbox">
+							<input type="checkbox" value="move-fade-right" name="secondClick[transitionFx]">
+							Disparition Droite 
+						</label>
+						<label class="checkbox">
+							<input type="checkbox" value="pull-right" name="secondClick[transitionFx]">
+							Poussée Droite 
+						</label>
+						<label class="checkbox">
+							<input type="checkbox" value="pull-top" name="secondClick[transitionFx]">
+							Poussée Haut 
+						</label>
 				</div>
 
 			</div>

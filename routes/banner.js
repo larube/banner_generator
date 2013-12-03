@@ -138,6 +138,7 @@ module.exports = function (app, models) {
 
 			bannerOptions.customImage 	= req.files && req.files[format] && req.files[format].customImage && req.files[format].customImage.path,
 			bannerOptions.clickPixelLink 	= typeof query[format].clickPixelLink !='undefined' ? query[format].clickPixelLink : '';
+			bannerOptions.cssTransition 	= typeof query[format].transitionFx !='undefined' ? query[format].transitionFx : '';
 			
 			if (typeof query.texts != 'undefined' && typeof config[bannerOptions.size].texts !='undefined'){
 				var texts = Object.keys(query.texts);
@@ -366,8 +367,8 @@ module.exports = function (app, models) {
 		 */
 		function createBannerHtml(linkToImage){
 			var 	size 			= banners[0].options.size,
-				format 		= banners[0].options.format,
-				templatePath 	= configSite.PROJECT_DIR+'/'+banners[0].config.htmlTemplate,
+				format 			= banners[0].options.format,
+				templatePath 		= configSite.PROJECT_DIR+'/'+banners[0].config.htmlTemplate,
 				htmlTemplate 		= '';
 
 			fs.readFile(templatePath, 'utf8', function (err, data) {
@@ -419,6 +420,27 @@ module.exports = function (app, models) {
 					var stringToReplace = '{{[ ]*clickPixelLink[ ]*}}';
 					var replace = new RegExp(stringToReplace,"g");
 					htmlTemplate = htmlTemplate.replace(replace, banners[0].options.clickPixelLink);
+				}
+
+				//Injection d'éventulles animations transtions CSS3
+				if(typeof banners[0].options.cssTransition !='undefined' && banners[0].options.cssTransition !='')
+				{
+					cssTransiton = banners[0].options.cssTransition;
+					var transitions	= JSON.parse(fs.readFileSync(configSite.PROJECT_DIR+'/config/banner_config/fx/fx_transition_second_click.json', 'utf8'));
+						var rules = transitions[cssTransiton];
+						for(key in rules["stage1"]){
+							var stageOne = rules["stage1"];
+							var stringToReplace = '{{[ ]*'+key+'[ ]*}}';
+							var replace = new RegExp(stringToReplace,"g");
+							htmlTemplate = htmlTemplate.replace(replace, stageOne[key]);
+						}
+
+						for(key in rules["stage2"]){
+							var stageOne = rules["stage2"];
+							var stringToReplace = '{{[ ]*'+key+'[ ]*}}';
+							var replace = new RegExp(stringToReplace,"g");
+							htmlTemplate = htmlTemplate.replace(replace, stageOne[key]);
+						}						
 				}
 
 				//Injection du JS
