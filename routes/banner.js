@@ -335,23 +335,12 @@ module.exports = function (app, models) {
 				tempPath 	= banner.options.customImage;
     				savePath 	=  configSite.TEMP_IMAGES + nameImage;
 
-			fs.rename(tempPath, savePath, function(error){
-				if(error)
-				{
-					throw error;
-				}
-				fs.unlink(tempPath, function(){
-					if(error)
-					{
-						throw error;
-					}
-						fs.readFile(savePath, function(err, data){
-							gsUtils.uploadImage(configSite.PATH_TO_GS, savePath, bucketName, saveCustomImageLink, configSite.
-								STORAGE_BASE_URL);
-						});
-
+				fs.readFile(tempPath, function(err, data){
+					fs.writeFile(savePath, data, function(err){
+						gsUtils.uploadImage(configSite.PATH_TO_GS, savePath, bucketName, saveCustomImageLink, configSite.
+						STORAGE_BASE_URL);
 					});
-			});
+				});
 		}
 
 		function saveCustomImageLink(srcCustomImage){
