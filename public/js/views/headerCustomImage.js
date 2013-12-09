@@ -1,5 +1,5 @@
-define(['hbs!templates/generator_custom_images_banners/customImageBanner', 'hbs!templates/generator_custom_images_banners/showLinkTemplate', 'select2', 'uniform', 'utf8', 'jqueryForm', 'ThreeAIncView'], function(customImageBannerTemplate, showLinkTemplate, select2, uniform, utf8, jqueryForm, ThreeAIncView){
-	var CustomImageBannerView =Backbone.View.extend({
+define(['hbs!templates/generator_custom_image_headers/customImageHeader', 'hbs!templates/generator_custom_image_headers/showLinkTemplate', 'select2', 'uniform', 'utf8', 'jqueryForm', 'ThreeAIncView'], function(customImageHeaderTemplate, showLinkTemplate, select2, uniform, utf8, jqueryForm, ThreeAIncView){
+	var HeaderCustomImageView =Backbone.View.extend({
 		el  		: $('#content'),
 
 		events 		: {
@@ -26,7 +26,7 @@ define(['hbs!templates/generator_custom_images_banners/customImageBanner', 'hbs!
 						out+="<option value="+campaigns[campaign].id+">"+utf8.decode(campaigns[campaign].name)+"</option>";
 					}
 					var templateConfig = {campaigns:out};
-					self.$el.html(customImageBannerTemplate(templateConfig));
+					self.$el.html(customImageHeaderTemplate(templateConfig));
 					ThreeAIncView.uniformSelect();
 					self.$el.hide().fadeIn();
 					self.imageUploadForm = $('.customImageFormContainer');
@@ -98,6 +98,6 @@ define(['hbs!templates/generator_custom_images_banners/customImageBanner', 'hbs!
 		}
 	});
 
-	return CustomImageBannerView;
+	return HeaderCustomImageView;
 });
 				

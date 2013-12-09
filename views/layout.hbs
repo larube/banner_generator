@@ -5,7 +5,6 @@
 	<link href="/styles/bootstrap/bootstrap.css" rel="stylesheet">
 	<link href="/styles/bootstrap/bootstrap-responsive.css" rel="stylesheet">
 	<link href="/styles/bootstrap/bootstrap-overrides.css" rel="stylesheet">
-	<link href="/styles/3ainc.css" rel="stylesheet">
 	<link href="/styles/elements.css" rel="stylesheet">
 	<link href='/styles/gallery.css' rel="stylesheet">
 	<link href='/styles/layout.css' rel="stylesheet">
@@ -20,6 +19,7 @@
 	<link href='/styles/lib/select2.css' rel="stylesheet">
 	<link href='/styles/lib/bootstrap.datepicker.css' rel="stylesheet">
 	<link href='/styles/lib/font-awesome.css' rel="stylesheet">
+	<link href="/styles/3ainc.css" rel="stylesheet">
   {{{block "stylesheets"}}}
 </head>
 
@@ -56,18 +56,40 @@
 
 	<div id="sidebar-nav">
 		<ul id="dashboard-menu">
-			<li>
-				<a href="#banner">
-					<i class="icon-th-list"></i>
-					<span>Footer</span>
+			<li class="format-1" >
+				<a href="#" class="dropdown-toggle">
+					<i class="ico">&nbsp;</i>
+					<span>Footers</span>
+					<i class="icon-chevron-down"></i>
 				</a>
+					<ul class="submenu">
+						<li><a href="#footer-scrapping">Scrapping Application</a></li>
+						<li><a href="#footer-custom-image">Custom Image</a></li>
+					</ul>
 			</li>
-			<li>
-				<a href="#customImageBanner">
-					<i class="icon-picture"></i>
-					<span>Custom Image Footer</span>
+
+			<li class="format-2">
+				<a href="#" class="dropdown-toggle">
+					<i class="ico">&nbsp;</i>
+					<span>Headers</span>
+					<i class="icon-chevron-down"></i>
 				</a>
+					<ul class="submenu">
+						<li><a href="#header-custom-image">Custom Image</a></li>
+					</ul>
 			</li>
+
+			<li class="format-3">
+				<a href="#" class="dropdown-toggle">
+					<i class="ico">&nbsp;</i>
+					<span>Overslides</span>
+					<i class="icon-chevron-down"></i>
+				</a>
+					<ul class="submenu">
+						<li><a href="#overslide-custom-image">Custom Image</a></li>
+					</ul>
+			</li>
+			
 		</ul>
 	</div>
 

@@ -5,7 +5,7 @@ define(function(require){
 		el : $('#sidebar-nav'),
 
 		events : {
-			'click ul#dashboard-menu li' 				: 'showSelectedMenu',
+			'click ul#dashboard-menu a' 	: 'showSelectedMenu',
 		},
 
 		initialize : function(){
@@ -22,11 +22,16 @@ define(function(require){
 		},
 
 		showSelectedMenu : function(evt){
+
+			if($(evt.target).closest('a').attr('href') !== '#'){
+				this.menuApp.find('div.pointer').remove();
+				this.menuApp.find('a').removeClass('active');
+				this.menuApp.find('li.active').removeClass('active');
+				$(evt.target).closest('a').addClass('active');
+				var li = $(evt.target).closest('ul').closest("li");
+				li.addClass('active').prepend('<div class="pointer"><div class="arrow"></div><div class="arrow_border"></div></div>');	
+			}
 			
-			this.menuApp.find('div.pointer').remove();
-			this.menuApp.find('li.active').removeClass('active');
-			var li = $(evt.target).closest('li');
-			li.addClass('active').prepend('<div class="pointer"><div class="arrow"></div><div class="arrow_border"></div></div>');
 		},
 		
 		validateInputs : function(inputs){

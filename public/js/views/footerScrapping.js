@@ -1,5 +1,5 @@
 define(['hbs!templates/generator_footers/footer', 'hbs!templates/generator_footers/scraping', 'hbs!templates/generator_footers/backOfficeLinks', 'hbs!templates/generator_footers/previewsFooters' ,'select2', 'uniform', 'utf8', 'jqueryForm', 'ThreeAIncView'], function(footerTemplate, scrapTemplate, showLinksTemplate, showPreviewsTemplate, select2, uniform, utf8, jqueryForm, ThreeAIncView){
-	var bannerView =Backbone.View.extend({
+	var FooterScrappingView =Backbone.View.extend({
 		el  		: $('#content'),
 
 		events 		: {
@@ -290,5 +290,5 @@ define(['hbs!templates/generator_footers/footer', 'hbs!templates/generator_foote
 		}
 	});
 
-	return bannerView;
+	return FooterScrappingView;
 });

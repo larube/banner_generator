@@ -492,7 +492,7 @@ module.exports = function (app, models) {
 				type 		= 3,
 				width 		= banners[0].config.bannerWidth,	
 				height 		= banners[0].options.size,
-				format 	= "'footer'",
+				format 		= "'footer'",
 				name 		= "'"+banners[0].config.backofficeName.replace('{{size}}', banners[0].options.size)+"'",
 				//Status 2 par défaut,  ce st à dire en pause
 				status 		= 2,
@@ -592,7 +592,7 @@ module.exports = function (app, models) {
 
 		
 		function createCustomImageBannerHtml(linkToImage){
-			var 	templatePath 	= configSite.PROJECT_DIR+'/'+configSite.BANNERS_TEMPLATES+'customImageBannerTemplate.html',
+			var 	templatePath 	= configSite.PROJECT_DIR+'/'+configSite.BANNERS_TEMPLATES+'customImageFooterTemplate.html',
 				htmlTemplate 	= '';
 
 			fs.readFile(templatePath, 'utf8', function (err, data) {
@@ -665,14 +665,15 @@ module.exports = function (app, models) {
 				type 		= 3,
 				width 		= imageWidth,	
 				height 		= imageHeight,
-				format 	="'footer'",
+				format 		="'"+req.body.banner_type+"'",
 				name 		= "'"+req.body.formatName+"'",
 				//Status 2 par défaut,  'c e'st à dire en pause
 				status 		= 2,
 				campaigns_FK = req.body.campaignID,
-				click_url	= "'"+req.body.trackLink+"'";
+				click_url	= "'"+req.body.trackLink+"'",
+				side 		= (typeof req.body.side === 'undefined')  ? 'left' : req.body.side;
 			
-			var post_click ='{"side":"left","type":"redirect", "src":"'+req.body.trackLink+'","link":"'+req.body.trackLink+'","embedded":"non", "effect":"flip","background":"", "icon":"","name":"","editor":"","banner":"","desc":"","screens":"","content":""}';
+			var post_click ='{"side":"'+req.body.side+'","type":"redirect", "src":"'+req.body.trackLink+'","link":"'+req.body.trackLink+'","embedded":"non", "effect":"flip","background":"", "icon":"","name":"","editor":"","banner":"","desc":"","screens":"","content":""}';
 
 			post_click="'"+post_click+"'";
 

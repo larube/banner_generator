@@ -1,4 +1,4 @@
-define(['views/index', 'views/banner', 'views/customImageBanner'], function(IndexView, BannerView, CustomImageBannerView){
+define(['views/index', 'views/footerScrapping', 'views/footerCustomImage', 'views/headerCustomImage', 'views/overslideCustomImage', 'theme'], function(IndexView, FooterScrappingView, FooterCustomImageView, HeaderCustomImageView, OverslideCustomImageView, theme){
 
 	var ThreeAIncRouter = Backbone.Router.extend({
 
@@ -6,8 +6,10 @@ define(['views/index', 'views/banner', 'views/customImageBanner'], function(Inde
 
 		routes : { 
 			"index" 				: "index",
-			"banner" 			: "banner",
-			"customImageBanner" 	: "customBanner"
+			"footer-scrapping" 			: "footerScrapping",
+			"footer-custom-image" 		: "customImageFooter",
+			"header-custom-image"		: "customImageHeader",
+			"overslide-custom-image"		: "customImageOverslide"
 		},
 
 		changeView : function(view){
@@ -22,13 +24,21 @@ define(['views/index', 'views/banner', 'views/customImageBanner'], function(Inde
 			this.changeView(new IndexView());
 		},*/
 
-		banner: function(){
-			this.changeView(new BannerView());
+		footerScrapping: function(){
+			this.changeView(new FooterScrappingView());
 		},
 
-		customBanner: function(){
-			this.changeView(new CustomImageBannerView());
+		customImageFooter: function(){
+			this.changeView(new FooterCustomImageView());
 		},
+
+		customImageHeader : function(){
+			this.changeView(new HeaderCustomImageView());
+		},
+
+		customImageOverslide : function(){
+			this.changeView(new OverslideCustomImageView());	
+		}
 
 	});
 

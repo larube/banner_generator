@@ -46,3 +46,35 @@
 .previewTransition{
 	position:absolute;bottom: 34px;left: -83px;z-index: 999;display:none;
 }
+
+#dashboard-menu a i {
+	position: absolute;left: 6px;height: 30px;width: 22px;opacity: 0.8;top: 12px;
+}
+#dashboard-menu ul.submenu a{
+	font-size:11px;
+}
+
+.ico{
+	background: url("../img/sprite_icons.png") ;
+}
+
+.format-1 .ico{
+	background-position: -19px 0px;
+	
+}
+
+.format-2 .ico{
+	background-position: 0px 0px;
+	
+}
+
+
+.format-3 .ico{
+	background-position: -40px 0px;
+	
+}
+
+
+
+
+
