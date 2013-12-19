@@ -18,6 +18,7 @@ define(['hbs!templates/generator_footers/footer', 'hbs!templates/generator_foote
 		},
 
 		showForm : function(evt){
+			$('.hide').hide();
 			$(evt.target).closest("div.field-box").next('.hide').toggle();
 		},
 
@@ -40,6 +41,7 @@ define(['hbs!templates/generator_footers/footer', 'hbs!templates/generator_foote
 					ThreeAIncView.uniformSelect();
 					self.$el.hide().fadeIn();
 					self.form = $('#addApplication');
+					$('.hide').first().toggle();
 				}).error(function(){
 					ThreeAIncView.hideAjaxBackground();
 					self.showErrorMessage('Impossible de récupérer les campagnes, veuillez réessayer plus tard.');
@@ -54,15 +56,8 @@ define(['hbs!templates/generator_footers/footer', 'hbs!templates/generator_foote
 				self 		=this,
 				badUrl 		= false;
 
-			//Check combien  de devices demande l user, on en veut qu un seul
-			var stores = $('input[name^="store["]:checked');
-			if(stores.length != 1){
-				this.showErrorMessage('Veuillez choisir UN device');
-				return;
-			}
-
 			$('.application-url').each(function(i){
-				var 	isChecked 	= $(this).closest('.hide').prev('div').find('.checker span');
+				var 	isChecked 	= $(this).closest('.hide').prev('div').find('.radio span');
 					value 		= $(this).val(),
 					regex 		= $(this).prop('pattern');
 

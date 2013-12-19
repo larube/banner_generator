@@ -54,12 +54,12 @@ define(['hbs!templates/generator_footers/footer', 'hbs!templates/generator_foote
 				self 		=this,
 				badUrl 		= false;
 
-			//Check combien  de devices demande l user, on en veut qu un seul
+			/*//Check combien  de devices demande l user, on en veut qu un seul
 			var stores = $('input[name^="store["]:checked');
 			if(stores.length != 1){
 				this.showErrorMessage('Veuillez choisir UN device');
 				return;
-			}
+			}*/
 
 			$('.application-url').each(function(i){
 				var 	isChecked 	= $(this).closest('.hide').prev('div').find('.checker span');

@@ -24,6 +24,7 @@ define(function(require){
 		showSelectedMenu : function(evt){
 
 			if($(evt.target).closest('a').attr('href') !== '#'){
+				$(evt.target).closest("li[class^='format-']").siblings().find('.submenu').slideUp();
 				this.menuApp.find('div.pointer').remove();
 				this.menuApp.find('a').removeClass('active');
 				this.menuApp.find('li.active').removeClass('active');

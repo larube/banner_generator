@@ -15,25 +15,12 @@ module.exports = function(app, models) {
 			stores.push(file);
 		});
 
-		Object.keys(query.store).forEach(function(store){
-			var 	device = {};
-				device.storeToCall 	= deviceStore[store];
-				device.name 		= store; 
-			callsStores.push(device);
-		});
-
-		processNextStore(callsStores);
-
-		function processNextStore(callsStores){
-			if(callsStores.length == 0){
-					res.send(scrappingRes);
-					return;
-			}else{
-				var store = callsStores[0];
-				getInfoStore(store);
-			}
-		}
-
+		var 	device = {};
+			device.storeToCall 	= deviceStore[query.device];
+			device.name 		=  query.device; 
+		
+		getInfoStore(device);
+		
 
 		function getInfoStore(store){
 
@@ -72,9 +59,7 @@ module.exports = function(app, models) {
 				delete scrap[store.name].nbStars;
 				scrap[store.name].nbStars 			=Math.ceil(stars*2) / 2;
 				scrappingRes.push(scrap);
-				delete (callsStores[0]);
-				callsStores.splice(0,1);
-				processNextStore(callsStores);
+				res.send(scrappingRes);
 			});
 		}
 		
